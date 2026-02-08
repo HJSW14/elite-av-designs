@@ -55,17 +55,17 @@ export default function BrandsPage() {
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mx-auto max-w-3xl text-center">
               <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
-                Authorized Partners
+                Brands & Partners
               </span>
               <h1 className="mb-6 text-3xl font-semibold tracking-tight text-[#E8E4DF] sm:text-4xl md:text-5xl">
                 The Brands{" "}
                 <span className="heading-display text-[#D4844C]">We Trust</span>
               </h1>
               <p className="text-[15px] leading-relaxed text-[#7A7570] sm:text-base">
-                We partner with the industry's most reliable, innovative, and
-                performance-driven brands. As a certified Control4 dealer and
-                Lutron installer, we bring professional-grade solutions to
-                Denver homeowners.
+                We are certified dealers for Control4, Lutron, and Hunter
+                Douglas - the industry's most trusted names. We also install and
+                support premium brands like Sony, Epson, Samsung, and Sonos to
+                deliver complete AV solutions.
               </p>
             </div>
           </div>

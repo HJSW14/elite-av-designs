@@ -24,7 +24,7 @@ export function BrandsGrid() {
           <div className="mb-8 flex items-center gap-3">
             <CheckCircle className="h-5 w-5 text-[#D4844C]" />
             <h2 className="text-xl font-semibold text-[#E8E4DF]">
-              Certified Partners
+              Authorized Dealers & Certified Partners
             </h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -34,10 +34,10 @@ export function BrandsGrid() {
           </div>
         </div>
 
-        {/* Authorized Partners */}
+        {/* Premium Brands We Install */}
         <div>
           <h2 className="mb-8 text-xl font-semibold text-[#E8E4DF]">
-            Authorized Partners
+            Premium Brands We Install
           </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {partnerBrands.map((brand, i) => (

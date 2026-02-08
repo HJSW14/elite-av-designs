@@ -325,8 +325,9 @@ export const brands: Brand[] = [
     name: "Hunter Douglas",
     tagline: "The Gold Standard in Motorized Window Coverings",
     description:
-      "Hunter Douglas makes the finest motorized shades, blinds, and shutters in the industry. Their PowerView automation system integrates seamlessly with Control4, Alexa, and other platforms, and the build quality is unmatched.",
-    certified: false,
+      "Hunter Douglas makes the finest motorized shades, blinds, and shutters in the industry. Their PowerView automation system integrates seamlessly with Control4, Alexa, and other platforms, and the build quality is unmatched. We are authorized Hunter Douglas dealers serving the Denver metro area.",
+    certified: true,
+    certificationLevel: "Authorized Dealer",
     specialties: [
       "Motorized shades, blinds, and shutters",
       "PowerView automation and scheduling",
