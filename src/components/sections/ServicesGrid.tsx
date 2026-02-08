@@ -30,9 +30,9 @@ export function ServicesGrid() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
             className="mt-3 text-3xl font-semibold tracking-tight text-[#1A1A18] sm:text-4xl lg:text-5xl"
           >
-            Four disciplines,{" "}
+            Complete AV solutions,{" "}
             <span className="heading-display text-[#D4844C]">one</span>{" "}
-            seamless experience
+            trusted partner
           </motion.h2>
         </div>
 
