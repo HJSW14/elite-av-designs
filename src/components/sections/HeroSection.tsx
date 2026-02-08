@@ -142,7 +142,7 @@ export function HeroSection() {
                   Certified Partner
                 </div>
                 <div className="mt-1 text-sm font-medium text-[#E8E4DF]">
-                  Control4 &middot; Lutron &middot; Sonos
+                  Control4 &middot; Lutron &middot; Hunter Douglas
                 </div>
               </div>
             </div>

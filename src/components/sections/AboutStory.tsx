@@ -76,7 +76,7 @@ export function AboutStory() {
                 motorized window coverings, and surveillance systems. Every
                 project receives the same attention to detail, whether it&apos;s
                 a single-room upgrade or a full smart estate buildout. We&apos;re
-                certified partners with Control4, Lutron, Sonos, and other
+                certified partners with Control4, Lutron, Hunter Douglas, and other
                 industry-leading brands because we believe in doing things
                 right. No shortcuts, no compromises.
               </p>
