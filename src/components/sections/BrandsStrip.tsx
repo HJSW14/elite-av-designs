@@ -25,13 +25,13 @@ function MarqueeRow({
   direction?: "left" | "right";
   speed?: number;
 }) {
-  const doubled = [...items, ...items];
+  const doubled = [...items, ...items, ...items]; // Triple for seamless loop on wide screens
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative flex w-full overflow-hidden">
       <motion.div
-        className="flex w-max items-center"
+        className="flex w-max shrink-0 items-center"
         animate={{
-          x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
+          x: direction === "left" ? ["0%", "-33.333%"] : ["-33.333%", "0%"],
         }}
         transition={{
           x: {
@@ -47,7 +47,7 @@ function MarqueeRow({
             key={`${brand.name}-${i}`}
             className="flex items-center"
           >
-            <div className="flex items-center justify-center px-6 opacity-40 transition-opacity duration-300 hover:opacity-80 sm:px-8 md:px-12">
+            <div className="flex items-center justify-center px-6 opacity-40 transition-opacity duration-300 hover:opacity-80 sm:px-8 md:px-12 lg:px-16">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={brand.logo}
