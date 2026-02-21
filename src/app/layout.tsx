@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { company } from "@/data/company";
@@ -128,6 +129,20 @@ export default function RootLayout({
       <body
         className={`${body.variable} ${display.variable} font-[family-name:var(--font-heading)] antialiased`}
       >
+        {/* Google Ads Conversion Tracking */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17946326980"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17946326980');
+          `}
+        </Script>
+        
         <SmoothScroll />
         {children}
       </body>
