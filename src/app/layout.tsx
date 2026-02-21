@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { company } from "@/data/company";
@@ -145,6 +147,8 @@ export default function RootLayout({
         
         <SmoothScroll />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
