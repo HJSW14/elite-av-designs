@@ -7,6 +7,17 @@ import { Container } from "@/components/ui/Container";
 import { company } from "@/data/company";
 import { submitContactForm } from "@/actions/contact";
 
+// Declare gtag for TypeScript
+declare global {
+  interface Window {
+    gtag?: (
+      command: string,
+      action: string,
+      params: Record<string, unknown>
+    ) => void;
+  }
+}
+
 const contactInfo = [
   {
     icon: Phone,
@@ -61,6 +72,15 @@ export function ContactForm() {
 
     if (result.success) {
       setSubmitted(true);
+      
+      // Track Google Ads conversion
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17946326980/sOHtCKuetvwbEMTvvO1C",
+          value: 1.0,
+          currency: "USD",
+        });
+      }
     } else {
       setError(result.error || "Failed to send message. Please try again.");
     }
