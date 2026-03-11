@@ -1,21 +1,23 @@
 import { company } from "@/data/company";
-import type { Brand } from "@/data/brands";
+
+const SITE_URL = "https://nextleveltow.com";
 
 export function localBusinessSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://eliteavdesigns.com/#business",
+    "@type": "TowingService",
+    "@id": `${SITE_URL}/#business`,
     name: company.name,
     legalName: company.legalName,
     description: company.description,
-    url: "https://eliteavdesigns.com",
+    url: SITE_URL,
     telephone: company.phone,
     email: company.email,
-    image: "https://eliteavdesigns.com/og-image.jpg",
-    logo: "https://eliteavdesigns.com/logo.png",
+    image: `${SITE_URL}/NLTow_Logo.png`,
+    logo: `${SITE_URL}/NLTow_Logo.png`,
     address: {
       "@type": "PostalAddress",
+      streetAddress: company.address,
       addressLocality: company.city,
       addressRegion: company.state,
       postalCode: company.zip,
@@ -23,80 +25,85 @@ export function localBusinessSchema() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 39.5086,
-      longitude: -104.7614,
+      latitude: company.coords.lat,
+      longitude: company.coords.lng,
     },
     areaServed: company.serviceAreas.map((area) => ({
       "@type": "City",
       name: area,
-      "@id": `https://en.wikipedia.org/wiki/${area.replace(/\s/g, "_")},_Colorado`,
+      "@id": `https://en.wikipedia.org/wiki/${area.replace(/\s/g, "_")},_California`,
     })),
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "18:00",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "00:00",
+      closes: "23:59",
     },
-    foundingDate: "2018",
-    numberOfEmployees: {
-      "@type": "QuantitativeValue",
-      minValue: 2,
-      maxValue: 10,
-    },
-    priceRange: "$$$",
-    paymentAccepted: "Cash, Credit Card, Check",
+    foundingDate: String(company.foundedYear),
+    priceRange: company.priceRange,
+    paymentAccepted: company.paymentMethods.join(", "),
     currenciesAccepted: "USD",
-    sameAs: [
-      company.socials.instagram !== "#" ? company.socials.instagram : undefined,
-      company.socials.facebook !== "#" ? company.socials.facebook : undefined,
-      company.socials.google !== "#" ? company.socials.google : undefined,
-    ].filter(Boolean),
+    hasMap: `https://www.google.com/maps?q=${company.coords.lat},${company.coords.lng}`,
+    ...(() => {
+      const urls = Object.values(company.socials).filter(
+        (v) => typeof v === "string" && v.startsWith("http")
+      ) as string[];
+      return urls.length > 0 ? { sameAs: urls } : {};
+    })(),
     knowsAbout: [
-      "Home Theater Installation",
-      "Smart Home Automation",
-      "Control4 Programming",
-      "Lutron Lighting and Shading",
-      "Sonos Audio Systems",
-      "Motorized Window Coverings",
-      "Surveillance Camera Installation",
-      "Dolby Atmos Audio",
-      "4K Projection Systems",
-      "Whole Home Audio",
+      "Flatbed Towing",
+      "Roadside Assistance",
+      "Vehicle Recovery",
+      "Long Distance Vehicle Transport",
+      "Jump Start Service",
+      "Tire Change Service",
+      "Fuel Delivery",
+      "Vehicle Lockout Service",
+      "AWD Vehicle Towing",
+      "Luxury Vehicle Towing",
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Home Technology Services",
+      name: "Towing and Roadside Assistance Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Home Theater Installation",
-            url: "https://eliteavdesigns.com/services/home-theater",
+            name: "Flatbed Towing",
+            url: `${SITE_URL}/services/flatbed-towing`,
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Smart Home Automation",
-            url: "https://eliteavdesigns.com/services/home-automation",
+            name: "Roadside Assistance",
+            url: `${SITE_URL}/services/roadside-assistance`,
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Motorized Window Coverings",
-            url: "https://eliteavdesigns.com/services/window-coverings",
+            name: "Vehicle Recovery",
+            url: `${SITE_URL}/services/vehicle-recovery`,
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Surveillance Systems",
-            url: "https://eliteavdesigns.com/services/surveillance",
+            name: "Long Distance Transport",
+            url: `${SITE_URL}/services/long-distance-transport`,
           },
         },
       ],
@@ -115,15 +122,15 @@ export function serviceSchema(service: {
     name: service.name,
     description: service.description,
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "TowingService",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
+      "@id": `${SITE_URL}/#business`,
     },
     areaServed: company.serviceAreas.map((area) => ({
       "@type": "City",
       name: area,
     })),
-    url: `https://eliteavdesigns.com/services/${service.slug}`,
+    url: `${SITE_URL}/services/${service.slug}`,
     serviceType: service.name,
   };
 }
@@ -145,7 +152,6 @@ export function serviceFaqSchema(
   };
 }
 
-// Alias for generic FAQ pages
 export function faqPageSchema(
   faqs: { question: string; answer: string }[]
 ) {
@@ -169,27 +175,25 @@ export function blogPostSchema(post: {
     author: {
       "@type": "Organization",
       name: post.author,
-      url: "https://eliteavdesigns.com",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
       name: company.name,
-      url: "https://eliteavdesigns.com",
+      url: SITE_URL,
     },
     datePublished: post.date,
     dateModified: post.date,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://eliteavdesigns.com/blog/${post.slug}`,
+      "@id": `${SITE_URL}/blog/${post.slug}`,
     },
-    url: `https://eliteavdesigns.com/blog/${post.slug}`,
+    url: `${SITE_URL}/blog/${post.slug}`,
     inLanguage: "en-US",
   };
 }
 
-export function breadcrumbSchema(
-  items: { name: string; url: string }[]
-) {
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -207,12 +211,12 @@ export function webSiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: company.name,
-    url: "https://eliteavdesigns.com",
+    url: SITE_URL,
     description: company.description,
     publisher: {
       "@type": "Organization",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
+      "@id": `${SITE_URL}/#business`,
     },
     inLanguage: "en-US",
   };
@@ -222,14 +226,14 @@ export function serviceCollectionSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Home Theater & Smart Home Services",
+    name: "Towing and Roadside Assistance Services",
     description:
-      "Custom home theater installation, Control4 smart home automation, motorized shades, and surveillance systems in Denver, CO.",
-    url: "https://eliteavdesigns.com/services",
+      "Flatbed towing, roadside assistance, vehicle recovery, and long-distance transport in Sacramento, CA.",
+    url: `${SITE_URL}/services`,
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "TowingService",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
+      "@id": `${SITE_URL}/#business`,
     },
     mainEntity: {
       "@type": "ItemList",
@@ -237,33 +241,32 @@ export function serviceCollectionSchema() {
         {
           "@type": "ListItem",
           position: 1,
-          name: "Home Theater Installation",
-          url: "https://eliteavdesigns.com/services/home-theater",
+          name: "Flatbed Towing",
+          url: `${SITE_URL}/services/flatbed-towing`,
         },
         {
           "@type": "ListItem",
           position: 2,
-          name: "Smart Home Automation",
-          url: "https://eliteavdesigns.com/services/home-automation",
+          name: "Roadside Assistance",
+          url: `${SITE_URL}/services/roadside-assistance`,
         },
         {
           "@type": "ListItem",
           position: 3,
-          name: "Motorized Window Coverings",
-          url: "https://eliteavdesigns.com/services/window-coverings",
+          name: "Vehicle Recovery",
+          url: `${SITE_URL}/services/vehicle-recovery`,
         },
         {
           "@type": "ListItem",
           position: 4,
-          name: "Surveillance Systems",
-          url: "https://eliteavdesigns.com/services/surveillance",
+          name: "Long Distance Transport",
+          url: `${SITE_URL}/services/long-distance-transport`,
         },
       ],
     },
   };
 }
 
-// Generic collection page schema
 export function collectionPageSchema(options: {
   name: string;
   description: string;
@@ -276,36 +279,9 @@ export function collectionPageSchema(options: {
     description: options.description,
     url: options.url,
     provider: {
-      "@type": "LocalBusiness",
+      "@type": "TowingService",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
-    },
-  };
-}
-
-export function projectCollectionSchema(
-  projects: { title: string; slug: string }[]
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "Our Projects - Home Theater & AV Installations",
-    description:
-      "Portfolio of custom home theater builds, smart home installations, and AV projects across Denver, CO.",
-    url: "https://eliteavdesigns.com/projects",
-    provider: {
-      "@type": "LocalBusiness",
-      name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
-    },
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: projects.map((p, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        name: p.title,
-        url: `https://eliteavdesigns.com/projects/${p.slug}`,
-      })),
+      "@id": `${SITE_URL}/#business`,
     },
   };
 }
@@ -316,12 +292,12 @@ export function aboutPageSchema() {
     "@type": "AboutPage",
     name: `About ${company.name}`,
     description: company.description,
-    url: "https://eliteavdesigns.com/about",
+    url: `${SITE_URL}/about`,
     mainEntity: {
       "@type": "Organization",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
-      foundingDate: "2018",
+      "@id": `${SITE_URL}/#business`,
+      foundingDate: String(company.foundedYear),
       description: company.description,
       telephone: company.phone,
       email: company.email,
@@ -338,12 +314,12 @@ export function contactPageSchema() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: `Contact ${company.name}`,
-    description: `Schedule a free consultation for home theater, smart home automation, and AV installation in Denver, CO.`,
-    url: "https://eliteavdesigns.com/contact",
+    description: `24/7 towing and roadside assistance dispatch in Sacramento, CA. Call ${company.phone} for immediate help.`,
+    url: `${SITE_URL}/contact`,
     mainEntity: {
-      "@type": "LocalBusiness",
+      "@type": "TowingService",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
+      "@id": `${SITE_URL}/#business`,
       telephone: company.phone,
       email: company.email,
     },
@@ -356,12 +332,12 @@ export function blogCollectionSchema() {
     "@type": "Blog",
     name: `${company.name} Blog`,
     description:
-      "Home theater tips, smart home guides, and AV installation insights from Denver's premier integrator.",
-    url: "https://eliteavdesigns.com/blog",
+      "Towing tips, roadside safety guides, and vehicle transport advice from Sacramento's 24/7 towing service.",
+    url: `${SITE_URL}/blog`,
     publisher: {
       "@type": "Organization",
       name: company.name,
-      "@id": "https://eliteavdesigns.com/#business",
+      "@id": `${SITE_URL}/#business`,
     },
     inLanguage: "en-US",
   };
@@ -370,14 +346,38 @@ export function blogCollectionSchema() {
 export function aggregateRatingSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://eliteavdesigns.com/#business",
+    "@type": "TowingService",
+    "@id": `${SITE_URL}/#business`,
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "50",
+      ratingValue: String(company.rating),
+      reviewCount: String(company.reviewCount),
       bestRating: "5",
       worstRating: "1",
+    },
+  };
+}
+
+export function reviewsPageSchema() {
+  const count = Number(company.reviewCount);
+  if (count < 1) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `Customer Reviews | ${company.name}`,
+    description: `See what Sacramento-area customers say about ${company.name}. ${company.rating}-star rated. Real feedback from real people.`,
+    url: `${SITE_URL}/reviews`,
+    mainEntity: {
+      "@type": "TowingService",
+      "@id": `${SITE_URL}/#business`,
+      name: company.name,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: String(company.rating),
+        reviewCount: String(company.reviewCount),
+        bestRating: "5",
+        worstRating: "1",
+      },
     },
   };
 }
@@ -386,17 +386,18 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://eliteavdesigns.com/#organization",
+    "@id": `${SITE_URL}/#organization`,
     name: company.name,
     legalName: company.legalName,
-    url: "https://eliteavdesigns.com",
-    logo: "https://eliteavdesigns.com/logo.png",
-    foundingDate: "2018",
+    url: SITE_URL,
+    logo: `${SITE_URL}/NLTow_Logo.png`,
+    foundingDate: String(company.foundedYear),
     description: company.description,
     telephone: company.phone,
     email: company.email,
     address: {
       "@type": "PostalAddress",
+      streetAddress: company.address,
       addressLocality: company.city,
       addressRegion: company.state,
       postalCode: company.zip,
@@ -406,46 +407,5 @@ export function organizationSchema() {
       "@type": "City",
       name: area,
     })),
-    award: [
-      "Control4 Certified Dealer",
-      "Lutron Certified Installer",
-      "150+ Projects Completed",
-    ],
-  };
-}
-
-export function brandPageSchema(brand: Brand) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: brand.name,
-    description: brand.description,
-    brand: {
-      "@type": "Brand",
-      name: brand.name,
-    },
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: company.name,
-        telephone: company.phone,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: company.city,
-          addressRegion: company.state,
-          postalCode: company.zip,
-          addressCountry: "US",
-        },
-      },
-    },
-    aggregateRating: brand.certified
-      ? {
-          "@type": "AggregateRating",
-          ratingValue: "5.0",
-          reviewCount: "50",
-        }
-      : undefined,
   };
 }

@@ -8,31 +8,31 @@ import { CTASection } from "@/components/sections/CTASection";
 import { serviceCollectionSchema, breadcrumbSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
-  title: "Home Theater & Smart Home Services in Denver, CO",
+  title: "Towing & Roadside Assistance Services in Sacramento, CA",
   description:
-    "Custom home theater installation, Control4 smart home automation, Lutron motorized shades, and 4K surveillance systems. Professionally designed and installed across Denver, Parker, Highlands Ranch, and the Colorado Front Range.",
+    "Flatbed towing, roadside assistance, vehicle recovery, and long-distance transport. 24/7 dispatch across Sacramento, Elk Grove, Rancho Cordova, Folsom, and Roseville. Fast response, upfront pricing.",
   alternates: {
-    canonical: "https://eliteavdesigns.com/services",
+    canonical: "https://nextleveltow.com/services",
   },
   openGraph: {
-    title: "Home Theater & Smart Home Services | Elite AV Designs",
+    title: "Towing & Roadside Services | Next Level Towing Sacramento",
     description:
-      "Custom home theater installation, smart home automation, motorized shades, and surveillance systems in Denver, CO.",
-    url: "https://eliteavdesigns.com/services",
+      "Professional flatbed towing, roadside assistance, vehicle recovery, and long-distance transport. Serving Sacramento and surrounding areas 24/7.",
+    url: "https://nextleveltow.com/services",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Home Theater & Smart Home Services | Elite AV Designs",
+    title: "Towing & Roadside Services | Next Level Towing Sacramento",
     description:
-      "Custom home theater installation, smart home automation, motorized shades, and surveillance systems in Denver, CO.",
+      "Professional flatbed towing, roadside assistance, vehicle recovery, and long-distance transport. Serving Sacramento and surrounding areas 24/7.",
   },
 };
 
 export default function ServicesPage() {
   const schema = serviceCollectionSchema();
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "Services", url: "https://eliteavdesigns.com/services" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "Services", url: "https://nextleveltow.com/services" },
   ]);
 
   return (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { company } from "@/data/company";
 
-const SITE_URL = "https://eliteavdesigns.com";
+const SITE_URL = "https://nextleveltow.com";
 
 export function buildMetadata(overrides: Partial<Metadata> & { path?: string } = {}): Metadata {
   const { path = "", ...rest } = overrides;

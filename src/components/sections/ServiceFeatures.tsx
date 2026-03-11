@@ -7,6 +7,7 @@ import { Check, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { services } from "@/data/services";
 import { areas } from "@/data/areas";
+import { company } from "@/data/company";
 
 export function ServiceFeatures({ slug }: { slug: string }) {
   const service = services.find((s) => s.slug === slug);
@@ -16,7 +17,7 @@ export function ServiceFeatures({ slug }: { slug: string }) {
   if (!service) return null;
 
   return (
-    <section ref={ref} className="bg-[#0C0C0C] py-20 lg:py-28">
+    <section ref={ref} className="bg-[#0a0a0a] py-20 lg:py-28">
       <Container>
         <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16 lg:gap-20">
           {/* Left: Full description + features */}
@@ -28,15 +29,15 @@ export function ServiceFeatures({ slug }: { slug: string }) {
               ease: [0.22, 1, 0.36, 1] as const,
             }}
           >
-            <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+            <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
               Overview
             </span>
-            <h2 className="mb-6 text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+            <h2 className="mb-6 text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
               What we{" "}
-              <span className="heading-display text-[#D4844C]">deliver</span>
+              <span className="heading-display text-[var(--color-accent)]">deliver</span>
             </h2>
 
-            <p className="mb-8 text-[15px] leading-[1.8] text-[#7A7570]">
+            <p className="mb-8 text-[15px] leading-[1.8] text-[#888]">
               {service.description}
             </p>
 
@@ -53,8 +54,8 @@ export function ServiceFeatures({ slug }: { slug: string }) {
                     ease: [0.22, 1, 0.36, 1] as const,
                   }}
                 >
-                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D4844C]/10">
-                    <Check className="h-3 w-3 text-[#D4844C]" />
+                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/10">
+                    <Check className="h-3 w-3 text-[var(--color-accent)]" />
                   </div>
                   <span className="text-[14px] text-[#A39E98]">{feature}</span>
                 </motion.li>
@@ -77,52 +78,44 @@ export function ServiceFeatures({ slug }: { slug: string }) {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${service.image})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/30 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/30 via-transparent to-transparent" />
             </div>
 
-            {/* Stats-like detail box */}
-            <div className="mt-6 rounded-xl border border-[#E8E4DF]/6 bg-[#111110] p-6">
-              <div className="grid grid-cols-2 gap-4">
+            {/* Key details */}
+            <div className="mt-6 rounded-xl border border-[#ededed]/6 bg-[#141414] p-5 sm:p-6">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div>
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#7A7570]">
-                    Brands
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#888]">
+                    Response
                   </span>
-                  <p className="mt-1 text-sm font-medium text-[#E8E4DF]">
-                    {service.features.length}+ supported
+                  <p className="mt-1 text-sm font-medium text-[#ededed]">
+                    {company.responseTime}
                   </p>
                 </div>
                 <div>
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#7A7570]">
-                    Service
-                  </span>
-                  <p className="mt-1 text-sm font-medium text-[#E8E4DF]">
-                    Design to support
-                  </p>
-                </div>
-                <div>
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#7A7570]">
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#888]">
                     Coverage
                   </span>
-                  <p className="mt-1 text-sm font-medium text-[#E8E4DF]">
-                    Denver metro area
+                  <p className="mt-1 text-sm font-medium text-[#ededed]">
+                    Sacramento area
                   </p>
                 </div>
                 <div>
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#7A7570]">
-                    Warranty
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-[#888]">
+                    Dispatch
                   </span>
-                  <p className="mt-1 text-sm font-medium text-[#E8E4DF]">
-                    Included
+                  <p className="mt-1 text-sm font-medium text-[#ededed]">
+                    24/7 available
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Service areas cross-link */}
-            <div className="mt-6 rounded-xl border border-[#E8E4DF]/6 bg-[#111110] p-6">
+            <div className="mt-6 rounded-xl border border-[#ededed]/6 bg-[#141414] p-6">
               <div className="mb-3 flex items-center gap-2">
-                <MapPin className="h-3.5 w-3.5 text-[#D4844C]" />
-                <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#D4844C]">
+                <MapPin className="h-3.5 w-3.5 text-[var(--color-accent)]" />
+                <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent)]">
                   Available in
                 </span>
               </div>
@@ -131,16 +124,16 @@ export function ServiceFeatures({ slug }: { slug: string }) {
                   <Link
                     key={area.slug}
                     href={`/areas/${area.slug}`}
-                    className="rounded-full border border-[#E8E4DF]/6 px-2.5 py-1 text-[11px] text-[#7A7570] transition-colors hover:border-[#D4844C]/30 hover:text-[#E8E4DF]"
+                    className="rounded-full border border-[#ededed]/6 px-2.5 py-1 text-[11px] text-[#888] transition-colors hover:border-[var(--color-accent)]/30 hover:text-[#ededed]"
                   >
                     {area.city}
                   </Link>
                 ))}
                 <Link
                   href="/areas"
-                  className="rounded-full border border-[#D4844C]/20 px-2.5 py-1 text-[11px] text-[#D4844C] transition-colors hover:bg-[#D4844C]/10"
+                  className="rounded-full border border-[var(--color-accent)]/20 px-2.5 py-1 text-[11px] text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)]/10"
                 >
-                  +{areas.length - 6} more
+                  View all areas
                 </Link>
               </div>
             </div>

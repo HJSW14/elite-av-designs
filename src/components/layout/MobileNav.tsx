@@ -7,6 +7,7 @@ import { X, Phone, Mail, ArrowRight } from "lucide-react";
 import { mainNav } from "@/data/navigation";
 import { company } from "@/data/company";
 import { Button } from "@/components/ui/Button";
+import { NextLevelLogo } from "@/components/ui/NextLevelLogo";
 
 interface MobileNavProps {
   open: boolean;
@@ -43,18 +44,13 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed top-0 right-0 bottom-0 z-50 flex w-full max-w-sm flex-col bg-[#0C0C0C] shadow-2xl"
+            className="fixed top-0 right-0 bottom-0 z-50 flex w-full max-w-sm flex-col bg-[#0a0a0a] shadow-2xl"
           >
             <div className="flex items-center justify-between p-5">
-              <span className="text-lg font-bold text-[#E8E4DF]">
-                Elite<span className="text-[#D4844C]">AV</span>{" "}
-                <span className="text-[10px] font-normal uppercase tracking-[0.15em] text-[#7A7570]">
-                  Designs
-                </span>
-              </span>
+              <NextLevelLogo imageClassName="h-9" />
               <button
                 onClick={onClose}
-                className="rounded-lg p-2 text-[#E8E4DF] transition-colors hover:bg-[#E8E4DF]/5"
+                className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2.5 text-[#ededed] transition-colors hover:bg-[#ededed]/5"
                 aria-label="Close navigation menu"
               >
                 <X className="h-6 w-6" />
@@ -73,20 +69,20 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                     <Link
                       href={item.href}
                       onClick={onClose}
-                      className="group flex items-center justify-between rounded-lg px-4 py-3 text-lg font-medium text-[#E8E4DF] transition-colors hover:bg-[#E8E4DF]/5"
+                      className="group flex min-h-[44px] items-center justify-between rounded-lg px-4 py-3 text-lg font-medium text-[#ededed] transition-colors hover:bg-[#ededed]/5"
                     >
                       {item.label}
-                      <ArrowRight className="h-4 w-4 text-[#7A7570] opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 text-[#888] opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1" />
                     </Link>
 
                     {item.children && (
-                      <div className="ml-4 space-y-1 border-l border-[#E8E4DF]/8 pl-4">
+                      <div className="ml-4 space-y-1 border-l border-[#ededed]/8 pl-4">
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
                             href={child.href}
                             onClick={onClose}
-                            className="block rounded-lg px-4 py-2 text-sm text-[#7A7570] transition-colors hover:text-[#E8E4DF] hover:bg-[#E8E4DF]/5"
+                            className="block rounded-lg px-4 py-2 text-sm text-[#888] transition-colors hover:text-[#ededed] hover:bg-[#ededed]/5"
                           >
                             {child.label}
                           </Link>
@@ -98,25 +94,27 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
               </div>
             </nav>
 
-            <div className="border-t border-[#E8E4DF]/8 p-5 space-y-4">
-              <div className="flex flex-col gap-2 text-sm text-[#7A7570]">
+            <div className="border-t border-[#ededed]/8 p-5 space-y-4">
+              <div className="flex flex-col gap-2 text-sm text-[#888]">
                 <a
-                  href={`tel:${company.phone.replace(/[^\d+]/g, "")}`}
-                  className="flex items-center gap-2 transition-colors hover:text-[#E8E4DF]"
+                  href={company.phoneHref}
+                  data-location="mobile_nav_phone"
+                  className="flex items-center gap-2 transition-colors hover:text-[#ededed]"
                 >
-                  <Phone className="h-4 w-4" />
+                  <Phone className="h-4 w-4 text-[var(--color-accent)]" />
                   {company.phone}
                 </a>
                 <a
                   href={`mailto:${company.email}`}
-                  className="flex items-center gap-2 transition-colors hover:text-[#E8E4DF]"
+                  className="flex items-center gap-2 transition-colors hover:text-[#ededed]"
                 >
-                  <Mail className="h-4 w-4" />
+                  <Mail className="h-4 w-4 text-[var(--color-accent)]" />
                   {company.email}
                 </a>
               </div>
-              <Button href="/contact" size="lg" className="w-full" onClick={onClose}>
-                Get a Free Quote
+              <Button href={company.phoneHref} size="lg" className="w-full" onClick={onClose}>
+                <Phone className="h-4 w-4" />
+                Call Now | {company.phone}
               </Button>
             </div>
           </motion.div>

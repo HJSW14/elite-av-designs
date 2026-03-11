@@ -9,7 +9,7 @@ import { services } from "@/data/services";
 
 export function ServicesList() {
   return (
-    <section className="bg-[#0C0C0C] py-20 lg:py-28">
+    <section className="bg-[#0a0a0a] py-20 lg:py-28">
       <Container>
         <div className="space-y-24 lg:space-y-32">
           {services.map((service, i) => (
@@ -63,11 +63,11 @@ function ServiceCard({
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
               style={{ backgroundImage: `url(${service.image})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-transparent" />
           </div>
 
           {/* Floating index badge */}
-          <div className="absolute -bottom-4 left-6 flex h-12 w-12 items-center justify-center rounded-xl border border-[#D4844C]/20 bg-[#1A1A18] text-sm font-semibold text-[#D4844C] shadow-lg shadow-[#0C0C0C]/50 md:-bottom-5 md:h-14 md:w-14 md:text-base">
+          <div className="absolute -bottom-4 left-6 flex h-12 w-12 items-center justify-center rounded-xl border border-[var(--color-accent)]/20 bg-[#141414] text-sm font-semibold text-[var(--color-accent)] shadow-lg shadow-[#0a0a0a]/50 md:-bottom-5 md:h-14 md:w-14 md:text-base">
             0{index + 1}
           </div>
         </motion.div>
@@ -84,15 +84,15 @@ function ServiceCard({
           }}
         >
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#D4844C]/20 bg-[#D4844C]/8">
-              <Icon className="h-5 w-5 text-[#D4844C]" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/8">
+              <Icon className="h-5 w-5 text-[var(--color-accent)]" />
             </div>
-            <h3 className="text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+            <h3 className="text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
               {service.title}
             </h3>
           </div>
 
-          <p className="mb-6 max-w-lg text-[15px] leading-[1.7] text-[#7A7570]">
+          <p className="mb-6 max-w-lg text-[15px] leading-[1.7] text-[#888]">
             {service.description}
           </p>
 
@@ -103,7 +103,7 @@ function ServiceCard({
                 key={feature}
                 className="flex items-start gap-2 text-[13px] text-[#A39E98]"
               >
-                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#D4844C]" />
+                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" />
                 {feature}
               </li>
             ))}

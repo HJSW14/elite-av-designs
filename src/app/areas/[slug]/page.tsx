@@ -28,19 +28,19 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Home Theater & Smart Home Installation in ${area.city}, CO`,
-    description: `Professional home theater, Control4 automation, motorized shades, and surveillance installation in ${area.city}, Colorado. Serving ${area.neighborhoods.slice(0, 4).join(", ")} and surrounding neighborhoods. Free consultation from ${company.name}.`,
+    title: `Towing & Roadside Assistance in ${area.city}, CA | Next Level Towing`,
+    description: `24/7 towing and roadside assistance in ${area.city}, California. Serving ${area.neighborhoods.slice(0, 4).join(", ")} and surrounding areas. Flatbed towing, jump-starts, tire changes, and more. Call ${company.phone}.`,
     alternates: {
-      canonical: `https://eliteavdesigns.com/areas/${area.slug}`,
+      canonical: `https://nextleveltow.com/areas/${area.slug}`,
     },
     openGraph: {
-      title: `${area.city} Home Theater & Smart Home | ${company.name}`,
+      title: `${area.city} Towing & Roadside | ${company.name}`,
       description: area.tagline,
-      url: `https://eliteavdesigns.com/areas/${area.slug}`,
+      url: `https://nextleveltow.com/areas/${area.slug}`,
     },
     twitter: {
       card: "summary_large_image",
-      title: `Home Theater & Smart Home Installation in ${area.city}, CO`,
+      title: `Towing & Roadside in ${area.city}, CA | Next Level Towing`,
       description: area.tagline,
     },
   };
@@ -60,16 +60,16 @@ export default async function AreaDetailPage({
 
   const areaSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://eliteavdesigns.com/#business",
+    "@type": "TowingService",
+    "@id": "https://nextleveltow.com/#business",
     name: company.name,
-    description: `Home theater and smart home installation services in ${area.city}, Colorado.`,
-    url: `https://eliteavdesigns.com/areas/${area.slug}`,
+    description: `24/7 towing and roadside assistance in ${area.city}, California.`,
+    url: `https://nextleveltow.com/areas/${area.slug}`,
     telephone: company.phone,
     areaServed: {
       "@type": "City",
       name: area.city,
-      "@id": `https://en.wikipedia.org/wiki/${area.city.replace(/\s/g, "_")},_Colorado`,
+      "@id": `https://en.wikipedia.org/wiki/${area.city.replace(/\s/g, "_")},_California`,
     },
     address: {
       "@type": "PostalAddress",
@@ -81,11 +81,11 @@ export default async function AreaDetailPage({
   };
 
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "Service Areas", url: "https://eliteavdesigns.com/areas" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "Service Areas", url: "https://nextleveltow.com/areas" },
     {
-      name: `${area.city}, CO`,
-      url: `https://eliteavdesigns.com/areas/${area.slug}`,
+      name: `${area.city}, CA`,
+      url: `https://nextleveltow.com/areas/${area.slug}`,
     },
   ]);
 

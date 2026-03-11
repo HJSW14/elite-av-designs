@@ -7,23 +7,12 @@ import { Container } from "@/components/ui/Container";
 import { company } from "@/data/company";
 import { submitContactForm } from "@/actions/contact";
 
-// Declare gtag for TypeScript
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      action: string,
-      params: Record<string, unknown>
-    ) => void;
-  }
-}
-
 const contactInfo = [
   {
     icon: Phone,
-    label: "Phone",
+    label: "Phone (24/7)",
     value: company.phone,
-    href: `tel:${company.phone.replace(/[^\d+]/g, "")}`,
+    href: company.phoneHref,
   },
   {
     icon: Mail,
@@ -46,11 +35,11 @@ const contactInfo = [
 ];
 
 const serviceOptions = [
-  "Home Theater",
-  "Home Automation",
-  "Window Coverings",
-  "Surveillance",
-  "Other / Not Sure",
+  "Flatbed Towing",
+  "Roadside Assistance",
+  "Vehicle Recovery",
+  "Long Distance Transport",
+  "Not Sure / Other",
 ];
 
 export function ContactForm() {
@@ -72,22 +61,21 @@ export function ContactForm() {
 
     if (result.success) {
       setSubmitted(true);
-      
-      // Track Google Ads conversion
-      if (typeof window !== "undefined" && window.gtag) {
-        window.gtag("event", "conversion", {
-          send_to: "AW-17946326980/sOHtCKuetvwbEMTvvO1C",
-          value: 1.0,
-          currency: "USD",
-        });
-      }
+      window.dispatchEvent(
+        new CustomEvent("nltow:lead", {
+          detail: {
+            type: "contact_form_submit",
+            location: "contact_form",
+          },
+        })
+      );
     } else {
       setError(result.error || "Failed to send message. Please try again.");
     }
   }
 
   return (
-    <section ref={ref} className="bg-[#0C0C0C] py-16 lg:py-24">
+    <section ref={ref} className="bg-[#0a0a0a] py-16 lg:py-24">
       <Container>
         <div className="grid gap-12 md:grid-cols-5 md:gap-16 lg:gap-20">
           {/* Left: Contact info */}
@@ -100,12 +88,12 @@ export function ContactForm() {
               ease: [0.22, 1, 0.36, 1] as const,
             }}
           >
-            <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+            <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
               Contact Info
             </span>
-            <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+            <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
               Reach out{" "}
-              <span className="heading-display text-[#D4844C]">anytime</span>
+              <span className="heading-display text-[var(--color-accent)]">anytime</span>
             </h2>
 
             <div className="space-y-6">
@@ -113,14 +101,14 @@ export function ContactForm() {
                 const Icon = item.icon;
                 const content = (
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#D4844C]/20 bg-[#D4844C]/8">
-                      <Icon className="h-4.5 w-4.5 text-[#D4844C]" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/8">
+                      <Icon className="h-4 w-4 text-[var(--color-accent)]" />
                     </div>
                     <div>
-                      <div className="text-[11px] font-medium uppercase tracking-wider text-[#7A7570]">
+                      <div className="text-[11px] font-medium uppercase tracking-wider text-[#888]">
                         {item.label}
                       </div>
-                      <div className="mt-0.5 text-sm font-medium text-[#E8E4DF]">
+                      <div className="mt-0.5 text-sm font-medium text-[#ededed]">
                         {item.value}
                       </div>
                     </div>
@@ -142,22 +130,19 @@ export function ContactForm() {
             </div>
 
             {/* Service area */}
-            <div className="mt-10 rounded-xl border border-[#E8E4DF]/6 bg-[#111110] p-5">
-              <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8E4DF]">
+            <div className="mt-10 rounded-xl border border-[#ededed]/6 bg-[#141414] p-5">
+              <h3 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ededed]">
                 Service Areas
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {company.serviceAreas.slice(0, 8).map((area) => (
                   <span
                     key={area}
-                    className="rounded-full border border-[#E8E4DF]/8 px-2.5 py-0.5 text-[11px] text-[#7A7570]"
+                    className="rounded-full border border-[#ededed]/8 px-2.5 py-0.5 text-[11px] text-[#888]"
                   >
                     {area}
                   </span>
                 ))}
-                <span className="rounded-full border border-[#D4844C]/20 px-2.5 py-0.5 text-[11px] text-[#D4844C]">
-                  + more
-                </span>
               </div>
             </div>
           </motion.div>
@@ -173,18 +158,22 @@ export function ContactForm() {
               ease: [0.22, 1, 0.36, 1] as const,
             }}
           >
-            <div className="rounded-2xl border border-[#E8E4DF]/6 bg-[#111110] p-6 sm:p-8">
+            <div className="rounded-2xl border border-[#ededed]/6 bg-[#141414] p-5 sm:p-8">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-16 text-center">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#D4844C]/10">
-                    <CheckCircle className="h-7 w-7 text-[#D4844C]" />
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-accent)]/10">
+                    <CheckCircle className="h-7 w-7 text-[var(--color-accent)]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#E8E4DF]">
+                  <h3 className="text-xl font-semibold text-[#ededed]">
                     Message sent!
                   </h3>
-                  <p className="mt-2 max-w-sm text-[14px] text-[#7A7570]">
-                    Thank you for reaching out. We&apos;ll get back to you
-                    within 24 hours.
+                  <p className="mt-2 max-w-sm text-[14px] text-[#888]">
+                    Thanks for reaching out. We will get back to you shortly. For urgent
+                    needs, call us at{" "}
+                    <a href={company.phoneHref} className="text-[var(--color-accent)]">
+                      {company.phone}
+                    </a>
+                    .
                   </p>
                 </div>
               ) : (
@@ -196,11 +185,17 @@ export function ContactForm() {
                     </div>
                   )}
 
+                  {/* Honeypot - hidden from users, catches bots */}
+                  <div className="absolute -left-[9999px] top-0" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
                       <label
                         htmlFor="name"
-                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#7A7570]"
+                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#888]"
                       >
                         Name
                       </label>
@@ -209,14 +204,15 @@ export function ContactForm() {
                         name="name"
                         type="text"
                         required
-                        className="w-full rounded-lg border border-[#E8E4DF]/10 bg-[#0C0C0C] px-4 py-3 text-sm text-[#E8E4DF] placeholder:text-[#7A7570]/50 focus:border-[#D4844C]/40 focus:outline-none focus:ring-1 focus:ring-[#D4844C]/20"
+                        autoComplete="name"
+                        className="min-h-[44px] w-full rounded-lg border border-[#ededed]/10 bg-[#0a0a0a] px-4 py-3 text-base text-[#ededed] placeholder:text-[#888]/50 focus:border-[var(--color-accent)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]/20 sm:text-sm"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="email"
-                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#7A7570]"
+                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#888]"
                       >
                         Email
                       </label>
@@ -225,7 +221,8 @@ export function ContactForm() {
                         name="email"
                         type="email"
                         required
-                        className="w-full rounded-lg border border-[#E8E4DF]/10 bg-[#0C0C0C] px-4 py-3 text-sm text-[#E8E4DF] placeholder:text-[#7A7570]/50 focus:border-[#D4844C]/40 focus:outline-none focus:ring-1 focus:ring-[#D4844C]/20"
+                        autoComplete="email"
+                        className="min-h-[44px] w-full rounded-lg border border-[#ededed]/10 bg-[#0a0a0a] px-4 py-3 text-base text-[#ededed] placeholder:text-[#888]/50 focus:border-[var(--color-accent)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]/20 sm:text-sm"
                         placeholder="you@email.com"
                       />
                     </div>
@@ -235,7 +232,7 @@ export function ContactForm() {
                     <div>
                       <label
                         htmlFor="phone"
-                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#7A7570]"
+                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#888]"
                       >
                         Phone
                       </label>
@@ -243,21 +240,23 @@ export function ContactForm() {
                         id="phone"
                         name="phone"
                         type="tel"
-                        className="w-full rounded-lg border border-[#E8E4DF]/10 bg-[#0C0C0C] px-4 py-3 text-sm text-[#E8E4DF] placeholder:text-[#7A7570]/50 focus:border-[#D4844C]/40 focus:outline-none focus:ring-1 focus:ring-[#D4844C]/20"
-                        placeholder="(303) 555-0000"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        className="min-h-[44px] w-full rounded-lg border border-[#ededed]/10 bg-[#0a0a0a] px-4 py-3 text-base text-[#ededed] placeholder:text-[#888]/50 focus:border-[var(--color-accent)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]/20 sm:text-sm"
+                        placeholder="(916) 555-0000"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="service"
-                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#7A7570]"
+                        className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#888]"
                       >
-                        Service Interest
+                        Service Needed
                       </label>
                       <select
                         id="service"
                         name="service"
-                        className="w-full rounded-lg border border-[#E8E4DF]/10 bg-[#0C0C0C] px-4 py-3 text-sm text-[#E8E4DF] focus:border-[#D4844C]/40 focus:outline-none focus:ring-1 focus:ring-[#D4844C]/20"
+                        className="min-h-[44px] w-full rounded-lg border border-[#ededed]/10 bg-[#0a0a0a] px-4 py-3 text-base text-[#ededed] focus:border-[var(--color-accent)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]/20 sm:text-sm"
                       >
                         <option value="">Select a service</option>
                         {serviceOptions.map((opt) => (
@@ -272,7 +271,7 @@ export function ContactForm() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#7A7570]"
+                      className="mb-1.5 block text-[12px] font-medium uppercase tracking-wider text-[#888]"
                     >
                       Message
                     </label>
@@ -281,23 +280,26 @@ export function ContactForm() {
                       name="message"
                       rows={5}
                       required
-                      className="w-full resize-none rounded-lg border border-[#E8E4DF]/10 bg-[#0C0C0C] px-4 py-3 text-sm text-[#E8E4DF] placeholder:text-[#7A7570]/50 focus:border-[#D4844C]/40 focus:outline-none focus:ring-1 focus:ring-[#D4844C]/20"
-                      placeholder="Tell us about your project..."
+                      className="min-h-[120px] w-full resize-none rounded-lg border border-[#ededed]/10 bg-[#0a0a0a] px-4 py-3 text-base text-[#ededed] placeholder:text-[#888]/50 focus:border-[var(--color-accent)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]/20 sm:text-sm"
+                      placeholder="Describe your situation or ask us a question..."
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#D4844C] px-7 py-3.5 text-sm font-medium text-white shadow-lg shadow-[#D4844C]/15 transition-all duration-300 hover:bg-[#C07040] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                    className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-[var(--color-accent)] px-7 py-3.5 text-base font-medium text-white shadow-lg shadow-[var(--color-accent)]/15 transition-all duration-300 hover:bg-[var(--color-accent-hover)] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:text-sm"
                   >
                     {loading ? "Sending..." : "Send Message"}
                     <Send className="h-4 w-4" />
                   </button>
 
-                  <p className="text-[11px] text-[#7A7570]/60">
-                    Free consultations for all new projects. We typically
-                    respond within 24 hours.
+                  <p className="text-[11px] text-[#888]/60">
+                    For emergencies, call us directly at{" "}
+                    <a href={company.phoneHref} className="text-[var(--color-accent)]">
+                      {company.phone}
+                    </a>{" "}
+                    for immediate dispatch.
                   </p>
                 </form>
               )}

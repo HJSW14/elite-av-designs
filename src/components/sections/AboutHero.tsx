@@ -19,9 +19,9 @@ const stagger = {
 
 export function AboutHero() {
   return (
-    <section className="noise-overlay relative overflow-hidden bg-[#0C0C0C] pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section className="noise-overlay relative overflow-hidden bg-[#0a0a0a] pt-32 pb-20 lg:pt-40 lg:pb-28">
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2">
-        <div className="h-[400px] w-[600px] rounded-full bg-[#D4844C]/[0.03] blur-[100px]" />
+        <div className="h-[400px] w-[600px] rounded-full bg-[var(--color-accent)]/[0.03] blur-[100px]" />
       </div>
 
       <Container className="relative z-10">
@@ -33,27 +33,26 @@ export function AboutHero() {
         >
           <motion.span
             variants={fadeUp}
-            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]"
+            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]"
           >
             About Us
           </motion.span>
 
           <motion.h1
             variants={fadeUp}
-            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#E8E4DF] sm:text-5xl lg:text-6xl"
+            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#ededed] sm:text-5xl lg:text-6xl"
           >
             Built on{" "}
-            <span className="heading-display text-[#D4844C]">passion</span>,
+            <span className="heading-display text-[var(--color-accent)]">passion</span>,
             driven by craft
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#7A7570]"
+            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#888]"
           >
-            Elite AV Designs was founded with a simple belief: that technology
-            should disappear into your home, not dominate it. We design systems
-            that feel intuitive, look beautiful, and work flawlessly.
+            Next Level Towing started with a simple belief: when your vehicle
+            breaks down, you deserve help that is fast, transparent, and fair.
           </motion.p>
         </motion.div>
       </Container>

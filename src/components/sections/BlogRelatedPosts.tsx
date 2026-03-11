@@ -7,14 +7,7 @@ import { Calendar, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { posts } from "@/data/posts";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
+import { formatDateShort } from "@/lib/format-date";
 
 export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
   const ref = useRef<HTMLElement>(null);
@@ -25,7 +18,7 @@ export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
   // If there are no other posts, show a CTA fallback
   if (related.length === 0) {
     return (
-      <section ref={ref} className="bg-[#0C0C0C] py-20 lg:py-28">
+      <section ref={ref} className="bg-[#0a0a0a] py-20 lg:py-28">
         <Container>
           <motion.div
             className="mx-auto max-w-2xl text-center"
@@ -36,15 +29,15 @@ export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
               ease: [0.22, 1, 0.36, 1] as const,
             }}
           >
-            <span className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+            <span className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
               Stay Updated
             </span>
-            <h2 className="text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
               More articles coming soon
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.7] text-[#7A7570]">
-              We are just getting started. Check back for more guides on home
-              theaters, automation, and smart home technology.
+            <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.7] text-[#888]">
+              We are just getting started. Check back for more guides on towing,
+              roadside safety, and vehicle care.
             </p>
             <div className="mt-8">
               <Button href="/contact">
@@ -58,7 +51,7 @@ export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
   }
 
   return (
-    <section ref={ref} className="bg-[#0C0C0C] py-20 lg:py-28">
+    <section ref={ref} className="bg-[#0a0a0a] py-20 lg:py-28">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -70,16 +63,16 @@ export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
         >
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+              <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
                 Keep Reading
               </span>
-              <h2 className="text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
                 More from the blog
               </h2>
             </div>
             <Link
               href="/blog"
-              className="hidden items-center gap-1.5 text-[13px] font-medium text-[#D4844C] transition-colors hover:text-[#E8E4DF] sm:flex"
+              className="hidden items-center gap-1.5 text-[13px] font-medium text-[var(--color-accent)] transition-colors hover:text-[#ededed] sm:flex"
             >
               All Articles <ArrowRight className="h-3.5 w-3.5" />
             </Link>
@@ -90,25 +83,25 @@ export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group overflow-hidden rounded-xl border border-[#E8E4DF]/6 bg-[#111110] transition-colors duration-300 hover:border-[#D4844C]/20"
+                className="group overflow-hidden rounded-xl border border-[#ededed]/6 bg-[#141414] transition-colors duration-300 hover:border-[var(--color-accent)]/20"
               >
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url(${post.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/60 via-transparent to-transparent" />
-                  <div className="absolute top-4 left-4 rounded-full bg-[#0C0C0C]/70 px-3 py-1 text-[11px] font-medium text-[#D4844C] backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4 rounded-full bg-[#0a0a0a]/70 px-3 py-1 text-[11px] font-medium text-[var(--color-accent)] backdrop-blur-sm">
                     {post.category}
                   </div>
                 </div>
 
                 <div className="p-5">
-                  <span className="mb-2 flex items-center gap-1.5 text-[11px] text-[#7A7570]">
+                  <span className="mb-2 flex items-center gap-1.5 text-[11px] text-[#888]">
                     <Calendar className="h-3 w-3" />
-                    {formatDate(post.date)}
+                    {formatDateShort(post.date)}
                   </span>
-                  <h3 className="text-base font-semibold leading-snug text-[#E8E4DF] transition-colors duration-200 group-hover:text-[#D4844C]">
+                  <h3 className="text-base font-semibold leading-snug text-[#ededed] transition-colors duration-200 group-hover:text-[var(--color-accent)]">
                     {post.title}
                   </h3>
                 </div>
@@ -119,7 +112,7 @@ export function BlogRelatedPosts({ currentSlug }: { currentSlug: string }) {
           <div className="mt-8 text-center sm:hidden">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D4844C]"
+              className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-accent)]"
             >
               View All Articles <ArrowRight className="h-3.5 w-3.5" />
             </Link>

@@ -8,9 +8,9 @@ interface FormData {
   message: string;
 }
 
-export function generateContactEmail(data: FormData) {
+export function generateContactEmailHtml(data: FormData) {
   const timestamp = new Date().toLocaleString("en-US", {
-    timeZone: "America/Denver",
+    timeZone: "America/Los_Angeles",
     dateStyle: "full",
     timeStyle: "short",
   });
@@ -31,7 +31,7 @@ export function generateContactEmail(data: FormData) {
           
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #D4844C 0%, #B86A3A 100%); padding: 40px; text-align: center;">
+            <td style="background: linear-gradient(135deg, #3e9ad1 0%, #1175b1 100%); padding: 40px; text-align: center;">
               <h1 style="margin: 0; color: #ffffff; font-size: 28px; font-weight: 600;">New Contact Form Submission</h1>
               <p style="margin: 10px 0 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">${company.name}</p>
             </td>
@@ -57,7 +57,7 @@ export function generateContactEmail(data: FormData) {
                       <tr>
                         <td style="padding: 12px 0; border-bottom: 1px solid #e5e5e5;">
                           <span style="display: inline-block; width: 120px; color: #666; font-size: 14px; font-weight: 500;">Email:</span>
-                          <a href="mailto:${data.email}" style="color: #D4844C; font-size: 14px; font-weight: 600; text-decoration: none;">${data.email}</a>
+                          <a href="mailto:${data.email}" style="color: #3e9ad1; font-size: 14px; font-weight: 600; text-decoration: none;">${data.email}</a>
                         </td>
                       </tr>
                       ${
@@ -66,7 +66,7 @@ export function generateContactEmail(data: FormData) {
                       <tr>
                         <td style="padding: 12px 0; border-bottom: 1px solid #e5e5e5;">
                           <span style="display: inline-block; width: 120px; color: #666; font-size: 14px; font-weight: 500;">Phone:</span>
-                          <a href="tel:${data.phone}" style="color: #D4844C; font-size: 14px; font-weight: 600; text-decoration: none;">${data.phone}</a>
+                          <a href="tel:${data.phone}" style="color: #3e9ad1; font-size: 14px; font-weight: 600; text-decoration: none;">${data.phone}</a>
                         </td>
                       </tr>
                       `
@@ -98,7 +98,7 @@ export function generateContactEmail(data: FormData) {
                 <tr>
                   <td style="padding-top: 20px;">
                     <h2 style="margin: 0 0 15px 0; color: #1a1a1a; font-size: 18px; font-weight: 600;">Message</h2>
-                    <div style="background-color: #f8f8f8; border-left: 4px solid #D4844C; padding: 20px; border-radius: 4px;">
+                    <div style="background-color: #f8f8f8; border-left: 4px solid #3e9ad1; padding: 20px; border-radius: 4px;">
                       <p style="margin: 0; color: #1a1a1a; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${data.message}</p>
                     </div>
                   </td>
@@ -112,7 +112,7 @@ export function generateContactEmail(data: FormData) {
           <tr>
             <td style="background-color: #f8f8f8; padding: 30px; text-align: center; border-top: 1px solid #e5e5e5;">
               <p style="margin: 0 0 10px 0; color: #666; font-size: 12px;">
-                This email was sent from the contact form at <a href="https://eliteavdesigns.com" style="color: #D4844C; text-decoration: none;">${company.name}</a>
+                This email was sent from the contact form at <a href="https://nextleveltow.com" style="color: #3e9ad1; text-decoration: none;">${company.name}</a>
               </p>
               <p style="margin: 0; color: #999; font-size: 11px;">
                 Reply directly to this email to respond to ${data.name}
@@ -127,4 +127,23 @@ export function generateContactEmail(data: FormData) {
 </body>
 </html>
   `.trim();
+}
+
+/** Plain text version for better deliverability (multipart email) */
+export function generateContactEmailText(data: FormData) {
+  const timestamp = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+    dateStyle: "full",
+    timeStyle: "short",
+  });
+
+  let text = `Next Level Towing - Contact Form Submission\n\n`;
+  text += `Name: ${data.name}\n`;
+  text += `Email: ${data.email}\n`;
+  if (data.phone) text += `Phone: ${data.phone}\n`;
+  if (data.service) text += `Service: ${data.service}\n`;
+  text += `Submitted: ${timestamp}\n\n`;
+  text += `Message:\n${data.message}\n\n`;
+  text += `---\nReply to this email to respond to ${data.name}.`;
+  return text;
 }

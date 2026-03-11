@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { StickyCallButton } from "@/components/layout/StickyCallButton";
 import { ServiceDetailHero } from "@/components/sections/ServiceDetailHero";
 import { ServiceFeatures } from "@/components/sections/ServiceFeatures";
 import { ServiceFaq } from "@/components/sections/ServiceFaq";
-import { EnhancedRelatedServices } from "@/components/sections/EnhancedRelatedServices";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { CTASection } from "@/components/sections/CTASection";
 import { services } from "@/data/services";
 import { serviceSchema, serviceFaqSchema, breadcrumbSchema } from "@/lib/schemas";
@@ -29,20 +30,20 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${service.title} Installation & Design in Denver, CO`,
-    description: `${service.shortDescription} Professionally installed by Elite AV Designs across Denver, Parker, Highlands Ranch, and the Colorado Front Range. Free consultation available.`,
+    title: `${service.title} in Sacramento, CA | Next Level Towing`,
+    description: `${service.shortDescription} Serving Sacramento, Elk Grove, Rancho Cordova, Folsom, and Roseville. Call (916) 234-8697 for 24/7 dispatch.`,
     alternates: {
-      canonical: `https://eliteavdesigns.com/services/${service.slug}`,
+      canonical: `https://nextleveltow.com/services/${service.slug}`,
     },
     openGraph: {
-      title: `${service.title} Services | Elite AV Designs Denver`,
+      title: `${service.title} | Next Level Towing Sacramento`,
       description: service.shortDescription,
-      url: `https://eliteavdesigns.com/services/${service.slug}`,
+      url: `https://nextleveltow.com/services/${service.slug}`,
       images: [{ url: service.image, width: 800, height: 600 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.title} Installation & Design in Denver, CO`,
+      title: `${service.title} in Sacramento, CA | Next Level Towing`,
       description: service.shortDescription,
       images: [service.image],
     },
@@ -70,11 +71,11 @@ export default async function ServiceDetailPage({
   const faqSchema = serviceFaqSchema(service.faqs);
 
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "Services", url: "https://eliteavdesigns.com/services" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "Services", url: "https://nextleveltow.com/services" },
     {
       name: service.title,
-      url: `https://eliteavdesigns.com/services/${service.slug}`,
+      url: `https://nextleveltow.com/services/${service.slug}`,
     },
   ]);
 
@@ -97,10 +98,11 @@ export default async function ServiceDetailPage({
         <ServiceDetailHero slug={slug} />
         <ServiceFeatures slug={slug} />
         <ServiceFaq slug={slug} />
-        <EnhancedRelatedServices currentSlug={slug} />
+        <RelatedServices currentSlug={slug} />
         <CTASection />
       </main>
       <Footer />
+      <StickyCallButton />
     </>
   );
 }

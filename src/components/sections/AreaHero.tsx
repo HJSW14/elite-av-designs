@@ -25,10 +25,10 @@ export function AreaHero({ slug }: { slug: string }) {
   if (!area) return null;
 
   return (
-    <section className="noise-overlay relative overflow-hidden bg-[#0C0C0C] pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section className="noise-overlay relative overflow-hidden bg-[#0a0a0a] pt-32 pb-20 lg:pt-40 lg:pb-28">
       {/* Subtle radial glow */}
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2">
-        <div className="h-[400px] w-[600px] rounded-full bg-[#D4844C]/[0.03] blur-[100px]" />
+        <div className="h-[400px] w-[600px] rounded-full bg-[var(--color-accent)]/[0.03] blur-[100px]" />
       </div>
 
       <Container className="relative z-10">
@@ -41,42 +41,42 @@ export function AreaHero({ slug }: { slug: string }) {
           {/* Breadcrumb */}
           <motion.nav
             variants={fadeUp}
-            className="mb-8 flex items-center justify-center gap-1.5 text-[12px] text-[#7A7570]"
+            className="mb-8 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-[12px] text-[#888]"
           >
-            <Link href="/" className="transition-colors hover:text-[#E8E4DF]">
+            <Link href="/" className="transition-colors hover:text-[#ededed]">
               Home
             </Link>
             <ChevronRight className="h-3 w-3" />
             <Link
               href="/areas"
-              className="transition-colors hover:text-[#E8E4DF]"
+              className="transition-colors hover:text-[#ededed]"
             >
               Service Areas
             </Link>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-[#D4844C]">{area.city}, CO</span>
+            <span className="text-[var(--color-accent)]">{area.city}, CA</span>
           </motion.nav>
 
           <motion.div variants={fadeUp} className="mb-5 flex items-center justify-center gap-2">
-            <MapPin className="h-4 w-4 text-[#D4844C]" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
-              {area.city}, Colorado
+            <MapPin className="h-4 w-4 text-[var(--color-accent)]" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
+              {area.city}, California
             </span>
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
-            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#E8E4DF] sm:text-5xl lg:text-6xl"
+            className="min-w-0 break-words text-4xl font-semibold leading-[1.1] tracking-tight text-[#ededed] sm:text-5xl lg:text-6xl"
           >
-            Home Theater & Smart Home in{" "}
-            <span className="heading-display text-[#D4844C]">
+            Towing & Roadside in{" "}
+            <span className="heading-display text-[var(--color-accent)]">
               {area.city}
             </span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#7A7570]"
+            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#888]"
           >
             {area.tagline}
           </motion.p>

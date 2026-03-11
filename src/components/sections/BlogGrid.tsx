@@ -6,21 +6,14 @@ import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { posts, type BlogPost } from "@/data/posts";
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
+import { formatDateFull } from "@/lib/format-date";
 
 export function BlogGrid() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section ref={ref} className="bg-[#0C0C0C] py-16 lg:py-24">
+    <section ref={ref} className="bg-[#0a0a0a] py-16 lg:py-24">
       <Container>
         <motion.div
           className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
@@ -34,7 +27,7 @@ export function BlogGrid() {
         </motion.div>
 
         {posts.length === 0 && (
-          <p className="text-center text-[15px] text-[#7A7570]">
+          <p className="text-center text-[15px] text-[#888]">
             No posts yet. Check back soon.
           </p>
         )}
@@ -56,7 +49,7 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-xl border border-[#E8E4DF]/6 bg-[#111110] transition-colors duration-300 hover:border-[#D4844C]/20"
+        className="group flex h-full flex-col overflow-hidden rounded-xl border border-[#ededed]/6 bg-[#141414] transition-colors duration-300 hover:border-[var(--color-accent)]/20"
       >
         {/* Image */}
         <div className="relative aspect-[16/9] overflow-hidden">
@@ -64,10 +57,10 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
             style={{ backgroundImage: `url(${post.image})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
 
           {/* Category badge */}
-          <div className="absolute top-4 left-4 rounded-full bg-[#0C0C0C]/70 px-3 py-1 text-[11px] font-medium text-[#D4844C] backdrop-blur-sm">
+          <div className="absolute top-4 left-4 rounded-full bg-[#0a0a0a]/70 px-3 py-1 text-[11px] font-medium text-[var(--color-accent)] backdrop-blur-sm">
             {post.category}
           </div>
         </div>
@@ -75,10 +68,10 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
         {/* Content */}
         <div className="flex flex-1 flex-col p-5">
           {/* Meta */}
-          <div className="mb-3 flex items-center gap-4 text-[11px] text-[#7A7570]">
+          <div className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[#888]">
             <span className="flex items-center gap-1.5">
               <Calendar className="h-3 w-3" />
-              {formatDate(post.date)}
+              {formatDateFull(post.date)}
             </span>
             <span className="flex items-center gap-1.5">
               <Clock className="h-3 w-3" />
@@ -86,15 +79,15 @@ function PostCard({ post, index }: { post: BlogPost; index: number }) {
             </span>
           </div>
 
-          <h3 className="text-lg font-semibold leading-snug text-[#E8E4DF] transition-colors duration-200 group-hover:text-[#D4844C]">
+          <h3 className="min-w-0 break-words text-lg font-semibold leading-snug text-[#ededed] transition-colors duration-200 group-hover:text-[var(--color-accent)]">
             {post.title}
           </h3>
 
-          <p className="mt-2 flex-1 text-[13px] leading-relaxed text-[#7A7570] line-clamp-3">
+          <p className="mt-2 flex-1 text-[13px] leading-relaxed text-[#888] line-clamp-3">
             {post.excerpt}
           </p>
 
-          <span className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-medium text-[#D4844C] transition-transform duration-200 group-hover:translate-x-1">
+          <span className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-accent)] transition-transform duration-200 group-hover:translate-x-1">
             Read Article <ArrowRight className="h-3 w-3" />
           </span>
         </div>

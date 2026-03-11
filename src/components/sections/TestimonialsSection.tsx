@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Star } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { testimonials } from "@/data/testimonials";
+import { company } from "@/data/company";
 
 export function TestimonialsSection() {
   const [current, setCurrent] = useState(0);
@@ -14,7 +16,6 @@ export function TestimonialsSection() {
     setCurrent((prev) => (prev + 1) % testimonials.length);
   }, []);
 
-  // Auto-cycle
   useEffect(() => {
     if (!inView) return;
     const interval = setInterval(next, 6000);
@@ -26,24 +27,42 @@ export function TestimonialsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#F5F2EE] py-24 lg:py-32"
+      className="relative overflow-hidden bg-[#0a0a0a] py-24 lg:py-32"
     >
       <Container>
         <div className="mx-auto max-w-4xl text-center">
           {/* Eyebrow */}
-          <motion.span
+          <motion.div
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]"
+            className="mb-2"
           >
-            Client Stories
-          </motion.span>
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
+              Customer Reviews
+            </span>
+          </motion.div>
 
-          {/* Big quote - fixed height to prevent layout shift */}
-          <div className="relative mt-10 h-[320px] sm:h-[280px] lg:h-[300px]">
+          {/* Rating callout */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-10 flex items-center justify-center gap-2"
+          >
+            <div className="flex gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <span className="text-xl font-bold text-[#ededed]">{company.rating}</span>
+            <span className="text-[#888]">/ 5 &middot; Highly rated</span>
+          </motion.div>
+
+          {/* Big quote -- fixed height to prevent layout shift */}
+          <div className="relative mt-4 min-h-[280px] sm:min-h-[260px] lg:min-h-[240px]">
             {/* Oversized quote marks */}
-            <div className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 select-none font-[family-name:var(--font-display)] text-[8rem] leading-none text-[#D4844C]/10 sm:text-[10rem]">
+            <div className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 select-none text-[8rem] leading-none text-[var(--color-accent)]/10 sm:text-[10rem]">
               &ldquo;
             </div>
 
@@ -56,16 +75,16 @@ export function TestimonialsSection() {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
                 className="relative flex h-full flex-col justify-center"
               >
-                <blockquote className="font-[family-name:var(--font-display)] text-xl leading-[1.6] font-normal italic text-[#1A1A18] sm:text-2xl lg:text-[1.65rem] lg:leading-[1.55]">
+                <blockquote className="text-xl font-normal leading-[1.6] text-[#ededed] sm:text-2xl lg:text-[1.65rem] lg:leading-[1.55]">
                   {t.text}
                 </blockquote>
 
                 <div className="mt-8">
-                  <div className="text-sm font-semibold text-[#1A1A18]">
+                  <div className="text-sm font-semibold text-[#ededed]">
                     {t.name}
                   </div>
-                  <div className="mt-0.5 text-xs text-[#7A7570]">
-                    {t.location} &middot; {t.project}
+                  <div className="mt-0.5 text-xs text-[#888]">
+                    {t.location} &middot; {t.service}
                   </div>
                 </div>
               </motion.div>
@@ -80,8 +99,8 @@ export function TestimonialsSection() {
                 onClick={() => setCurrent(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   i === current
-                    ? "w-8 bg-[#D4844C]"
-                    : "w-1.5 bg-[#1A1A18]/15 hover:bg-[#1A1A18]/30"
+                    ? "w-8 bg-[var(--color-accent)]"
+                    : "w-1.5 bg-[#ededed]/15 hover:bg-[#ededed]/30"
                 }`}
                 aria-label={`View testimonial ${i + 1}`}
               />

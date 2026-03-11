@@ -2,56 +2,59 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { company } from "@/data/company";
 import { footerNav } from "@/data/navigation";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { NextLevelLogo } from "@/components/ui/NextLevelLogo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#E8E4DF]/6 bg-[#0C0C0C] pt-16 pb-8">
+    <footer className="border-t border-[#ededed]/6 bg-[#0a0a0a] pt-16 pb-8">
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           {/* Brand Column */}
-          <div className="sm:col-span-2 md:col-span-1">
-            <Link href="/" className="inline-block">
-              <span className="text-xl font-bold tracking-tight text-[#E8E4DF]">
-                Elite<span className="text-[#D4844C]">AV</span>
-              </span>
-              <span className="ml-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[#7A7570]">
-                Designs
-              </span>
-            </Link>
-            <p className="mt-4 text-[13px] leading-relaxed text-[#7A7570]">
-              Denver&apos;s premier home theater and automation company.
-              Transforming homes with technology and thoughtful design.
+          <div className="min-w-0 sm:col-span-2 md:col-span-1">
+            <NextLevelLogo imageClassName="h-10" />
+
+            <p className="mt-4 text-[13px] leading-relaxed text-[#888]">
+              Sacramento&apos;s 24/7 towing and roadside assistance service.
+              Fast response, upfront pricing, and flatbed trucks for every
+              situation.
             </p>
 
             <div className="mt-6 space-y-2.5">
               <a
-                href={`tel:${company.phone.replace(/[^\d+]/g, "")}`}
-                className="flex items-center gap-2.5 text-[13px] text-[#7A7570] transition-colors hover:text-[#E8E4DF]"
+                href={company.phoneHref}
+                data-location="footer_phone"
+                className="flex items-center gap-2.5 text-[13px] text-[#888] transition-colors hover:text-[#ededed]"
               >
-                <Phone className="h-3.5 w-3.5 text-[#D4844C]" />
+                <Phone className="h-3.5 w-3.5 text-[var(--color-accent)]" />
                 {company.phone}
               </a>
               <a
                 href={`mailto:${company.email}`}
-                className="flex items-center gap-2.5 text-[13px] text-[#7A7570] transition-colors hover:text-[#E8E4DF]"
+                className="flex items-center gap-2.5 text-[13px] text-[#888] transition-colors hover:text-[#ededed]"
               >
-                <Mail className="h-3.5 w-3.5 text-[#D4844C]" />
+                <Mail className="h-3.5 w-3.5 text-[var(--color-accent)]" />
                 {company.email}
               </a>
-              <div className="flex items-center gap-2.5 text-[13px] text-[#7A7570]">
-                <MapPin className="h-3.5 w-3.5 text-[#D4844C]" />
+              <div className="flex items-center gap-2.5 text-[13px] text-[#888]">
+                <MapPin className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" />
                 {company.fullAddress}
+              </div>
+              <div className="flex items-center gap-2.5 text-[13px] text-[#888]">
+                <Clock className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" />
+                {company.hours}
               </div>
             </div>
 
             {/* Google Review Button */}
             <div className="mt-6">
               <a
-                href="https://share.google/Ah5mfYwDXqSrXXPqN"
+                href={company.socials.google}
+                data-track="google-review"
+                data-location="footer_review_cta"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#D4844C] px-4 py-2.5 text-[13px] font-medium text-white transition-all hover:bg-[#C47741] hover:shadow-lg hover:shadow-[#D4844C]/20"
+                className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-accent)] px-4 py-2.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-accent-hover)] hover:shadow-lg hover:shadow-[var(--color-accent)]/20"
               >
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -66,7 +69,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8E4DF]">
+            <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ededed]">
               Services
             </h3>
             <ul className="space-y-2.5">
@@ -74,7 +77,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#7A7570] transition-colors hover:text-[#E8E4DF]"
+                    className="text-[13px] text-[#888] transition-colors hover:text-[#ededed]"
                   >
                     {link.label}
                   </Link>
@@ -85,7 +88,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8E4DF]">
+            <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ededed]">
               Company
             </h3>
             <ul className="space-y-2.5">
@@ -93,7 +96,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-[#7A7570] transition-colors hover:text-[#E8E4DF]"
+                    className="text-[13px] text-[#888] transition-colors hover:text-[#ededed]"
                   >
                     {link.label}
                   </Link>
@@ -102,9 +105,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Service Area */}
+          {/* Service Areas */}
           <div>
-            <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8E4DF]">
+            <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#ededed]">
               Service Areas
             </h3>
             <ul className="space-y-2.5">
@@ -114,9 +117,9 @@ export function Footer() {
                   <li key={area}>
                     <Link
                       href={`/areas/${slug}`}
-                      className="text-[13px] text-[#7A7570] transition-colors hover:text-[#E8E4DF]"
+                      className="text-[13px] text-[#888] transition-colors hover:text-[#ededed]"
                     >
-                      {area}, CO
+                      {area}, CA
                     </Link>
                   </li>
                 );
@@ -124,7 +127,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/areas"
-                  className="text-[13px] text-[#D4844C] transition-colors hover:text-[#E8E4DF]"
+                  className="text-[13px] text-[var(--color-accent)] transition-colors hover:text-[#ededed]"
                 >
                   View all areas
                 </Link>
@@ -134,17 +137,17 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#E8E4DF]/6 pt-8 sm:flex-row">
-          <p className="text-[11px] text-[#7A7570]" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} {company.name}. All rights
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#ededed]/6 pt-8 text-center sm:flex-row sm:text-left">
+          <p className="text-[12px] text-[#888] sm:text-[11px]">
+            &copy; {company.copyrightYear} {company.legalName}. All rights
             reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {footerNav.legal.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[11px] text-[#7A7570] transition-colors hover:text-[#E8E4DF]"
+                className="text-[11px] text-[#888] transition-colors hover:text-[#ededed]"
               >
                 {link.label}
               </Link>

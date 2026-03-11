@@ -14,7 +14,7 @@ export function BlogPostContent({ slug }: { slug: string }) {
   if (!post) return null;
 
   return (
-    <section ref={ref} className="bg-[#0C0C0C] py-16 lg:py-24">
+    <section ref={ref} className="bg-[#0a0a0a] py-16 lg:py-24">
       <Container>
         <motion.article
           className="mx-auto max-w-3xl"
@@ -42,7 +42,7 @@ function Block({ block }: { block: ContentBlock }) {
 
     case "heading":
       return (
-        <h2 className="mb-4 mt-10 text-2xl font-semibold tracking-tight text-[#E8E4DF] first:mt-0 sm:text-3xl">
+        <h2 className="mb-4 mt-10 text-2xl font-semibold tracking-tight text-[#ededed] first:mt-0 sm:text-3xl">
           {block.text}
         </h2>
       );
@@ -52,7 +52,7 @@ function Block({ block }: { block: ContentBlock }) {
         <ul className="mb-6 space-y-2.5 pl-1">
           {block.items.map((item, i) => (
             <li key={i} className="flex items-start gap-3 text-[15px] leading-[1.7] text-[#A39E98]">
-              <Check className="mt-1 h-4 w-4 shrink-0 text-[#D4844C]" />
+              <Check className="mt-1 h-4 w-4 shrink-0 text-[var(--color-accent)]" />
               {item}
             </li>
           ))}
@@ -61,10 +61,10 @@ function Block({ block }: { block: ContentBlock }) {
 
     case "tip":
       return (
-        <div className="my-8 flex gap-4 rounded-xl border border-[#D4844C]/15 bg-[#D4844C]/[0.04] p-5">
-          <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-[#D4844C]" />
+        <div className="my-8 flex flex-col gap-3 rounded-xl border border-[var(--color-accent)]/15 bg-[var(--color-accent)]/[0.04] p-5 sm:flex-row sm:gap-4">
+          <Lightbulb className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-accent)]" />
           <p className="text-[14px] leading-[1.7] text-[#A39E98]">
-            <span className="font-medium text-[#D4844C]">Pro tip: </span>
+            <span className="font-medium text-[var(--color-accent)]">Pro tip: </span>
             {block.text}
           </p>
         </div>

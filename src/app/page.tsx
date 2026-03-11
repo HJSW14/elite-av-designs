@@ -1,15 +1,29 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { TrustBadges } from "@/components/ui/TrustBadges";
+import { TrustBar } from "@/components/sections/TrustBar";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
-import { FeaturedProject } from "@/components/sections/FeaturedProject";
-import { VideoShowcase } from "@/components/sections/VideoShowcase";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { BrandsStrip } from "@/components/sections/BrandsStrip";
+import { ServiceAreaMap } from "@/components/sections/ServiceAreaMap";
 import { CTASection } from "@/components/sections/CTASection";
+import { StickyCallButton } from "@/components/layout/StickyCallButton";
+import { company } from "@/data/company";
+
+export const metadata: Metadata = {
+  title: "Towing & Roadside Assistance in Sacramento, CA | 24/7 Dispatch",
+  description: company.description,
+  alternates: {
+    canonical: "https://nextleveltow.com",
+  },
+  openGraph: {
+    title: `${company.name} | Towing & Roadside Assistance in Sacramento, CA`,
+    description: company.description,
+    url: "https://nextleveltow.com",
+  },
+};
 
 export default function Home() {
   return (
@@ -17,22 +31,16 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <div className="bg-[#0C0C0C] py-12">
-          <TrustBadges />
-        </div>
+        <TrustBar />
         <ServicesGrid />
-        <FeaturedProject />
-        <VideoShowcase
-          title="See Our Work in Action"
-          description="Watch how we transform homes across Denver with custom home theaters, smart automation, and integrated AV solutions."
-        />
         <WhyChooseUs />
         <ProcessSteps />
         <TestimonialsSection />
-        <BrandsStrip />
+        <ServiceAreaMap />
         <CTASection />
       </main>
       <Footer />
+      <StickyCallButton />
     </>
   );
 }

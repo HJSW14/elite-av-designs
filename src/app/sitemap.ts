@@ -2,15 +2,12 @@ import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
 import { posts } from "@/data/posts";
 import { areas } from "@/data/areas";
-import { projects } from "@/data/projects";
-import { brands } from "@/data/brands";
 
-const BASE_URL = "https://eliteavdesigns.com";
+const BASE_URL = "https://nextleveltow.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  // ── Static pages ────────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -25,9 +22,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/projects`,
+      url: `${BASE_URL}/areas`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/reviews`,
       lastModified: now,
       changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/faq`,
+      lastModified: now,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
@@ -46,19 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/blog`,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/areas`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/brands`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/privacy`,
@@ -74,7 +71,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // ── Service detail pages (generated from data) ──────────────────
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${BASE_URL}/services/${service.slug}`,
     lastModified: now,
@@ -82,7 +78,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // ── Blog post pages (generated from data) ───────────────────────
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.date),
@@ -90,25 +85,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // ── Service area pages (generated from data) ────────────────────
   const areaPages: MetadataRoute.Sitemap = areas.map((area) => ({
     url: `${BASE_URL}/areas/${area.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  // ── Project detail pages (generated from data) ──────────────────
-  const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
-    url: `${BASE_URL}/projects/${project.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-
-  // ── Brand pages (generated from data) ───────────────────────────
-  const brandPages: MetadataRoute.Sitemap = brands.map((brand) => ({
-    url: `${BASE_URL}/brands/${brand.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -119,7 +97,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...servicePages,
     ...blogPages,
     ...areaPages,
-    ...projectPages,
-    ...brandPages,
   ];
 }

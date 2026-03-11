@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
+import { company } from "@/data/company";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -19,10 +20,10 @@ const stagger = {
 
 export function BlogHero() {
   return (
-    <section className="noise-overlay relative overflow-hidden bg-[#0C0C0C] pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section className="noise-overlay relative overflow-hidden bg-[#0a0a0a] pt-32 pb-20 lg:pt-40 lg:pb-28">
       {/* Subtle radial glow */}
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2">
-        <div className="h-[400px] w-[600px] rounded-full bg-[#D4844C]/[0.03] blur-[100px]" />
+        <div className="h-[400px] w-[600px] rounded-full bg-[var(--color-accent)]/[0.03] blur-[100px]" />
       </div>
 
       <Container className="relative z-10">
@@ -34,25 +35,26 @@ export function BlogHero() {
         >
           <motion.span
             variants={fadeUp}
-            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]"
+            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]"
           >
             Insights &amp; Guides
           </motion.span>
 
           <motion.h1
             variants={fadeUp}
-            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#E8E4DF] sm:text-5xl lg:text-6xl"
+            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#ededed] sm:text-5xl lg:text-6xl"
           >
             The{" "}
-            <span className="heading-display text-[#D4844C]">Elite</span> blog
+            <span className="heading-display text-[var(--color-accent)]">{company.name}</span>{" "}
+            blog
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#7A7570]"
+            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#888]"
           >
-            Practical advice, project breakdowns, and home technology tips from
-            the team that installs it every day.
+            Towing tips, roadside safety guides, and vehicle care advice from
+            Sacramento&apos;s trusted 24/7 tow team.
           </motion.p>
         </motion.div>
       </Container>

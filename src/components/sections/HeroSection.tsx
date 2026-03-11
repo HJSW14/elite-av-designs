@@ -2,10 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { stats } from "@/data/company";
+import { company } from "@/data/company";
 
 const stagger = {
   hidden: {},
@@ -42,75 +42,69 @@ export function HeroSection() {
   return (
     <section
       ref={ref}
-      className="noise-overlay relative min-h-[100dvh] overflow-hidden bg-[#0C0C0C]"
+      className="noise-overlay relative min-h-[100dvh] w-full max-w-[100vw] overflow-x-clip overflow-y-visible bg-[#0a0a0a]"
     >
-      <Container className="relative z-10 flex min-h-[100dvh] items-center">
-        <div className="grid w-full gap-8 py-24 md:grid-cols-12 md:gap-6 md:py-0">
+      <Container className="relative z-10 flex min-h-[100dvh] w-full min-w-0 max-w-full items-center">
+        <div className="grid min-w-0 w-full gap-8 py-24 md:grid-cols-12 md:gap-6 md:py-0">
           {/* Left: Text content */}
           <motion.div
-            className="flex flex-col justify-center md:col-span-6 lg:col-span-5"
+            className="flex min-w-0 flex-col justify-center md:col-span-6 lg:col-span-5"
             style={{ y: textY }}
             initial="hidden"
             animate="visible"
             variants={stagger}
           >
             {/* Eyebrow */}
-            <motion.div variants={fadeUp} className="mb-5 flex items-center gap-3">
-              <span className="h-px w-6 bg-[#D4844C]" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
-                Denver &middot; Parker &middot; Colorado
+            <motion.div variants={fadeUp} className="mb-5 flex flex-wrap items-center gap-3">
+              <span className="h-px w-6 shrink-0 bg-[var(--color-accent)]" />
+              <span className="text-[12px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)] sm:text-[11px]">
+                Sacramento &middot; Elk Grove &middot; Roseville
               </span>
             </motion.div>
 
             {/* Headline */}
-            <motion.h1 variants={fadeUp} className="text-4xl font-semibold leading-[1.08] tracking-tight text-[#E8E4DF] sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem]">
-              Your Space,{" "}
-              <span className="heading-display text-[#D4844C]">
-                Elevated
+            <motion.h1
+              variants={fadeUp}
+              className="text-4xl font-semibold leading-[1.08] tracking-tight text-[#ededed] sm:text-5xl md:text-[3.5rem] lg:text-[4.2rem]"
+            >
+              Towing &{" "}
+              <span className="heading-display text-[var(--color-accent)]">
+                Roadside
               </span>
               <br />
-              by Technology
+              in Sacramento
             </motion.h1>
+
+            {/* Tagline */}
+            <motion.p
+              variants={fadeUp}
+              className="mt-4 text-lg font-medium text-[#ededed]/70 tracking-wide"
+            >
+              {company.tagline}
+            </motion.p>
 
             {/* Subline */}
             <motion.p
               variants={fadeUp}
-              className="mt-6 max-w-md text-[15px] leading-[1.7] text-[#7A7570]"
+              className="mt-4 max-w-full break-words text-[15px] leading-[1.7] text-[#888] sm:max-w-md"
             >
-              Custom home theaters, smart automation, motorized shading,
-              and surveillance systems. Designed, installed, and supported
-              by a team that gets it right.
+              Fast response. Fair prices. No surprises. We dispatch 24/7 and aim
+              for quick arrival throughout Sacramento and surrounding areas.
             </motion.p>
 
             {/* CTAs */}
             <motion.div
               variants={fadeUp}
-              className="mt-9 flex flex-wrap items-center gap-4"
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4"
             >
-              <Button href="/contact" size="lg">
-                Start a Project
-                <ArrowRight className="h-4 w-4" />
+              <Button href={company.phoneHref} size="lg" className="w-full justify-center sm:w-auto">
+                <Phone className="h-4 w-4 shrink-0" />
+                Call Now -- {company.phone}
               </Button>
-              <Button href="/projects" variant="ghost" size="lg" className="text-[#7A7570] hover:text-[#E8E4DF]">
-                See Our Work
+              <Button href="/services" variant="ghost" size="lg" className="w-full justify-center border border-[#ededed]/15 text-[#888] hover:border-[#ededed]/30 hover:bg-[#ededed]/5 hover:text-[#ededed] sm:w-auto sm:border-0">
+                Our Services
+                <ArrowRight className="h-4 w-4 shrink-0" />
               </Button>
-            </motion.div>
-
-            {/* Stats row */}
-            <motion.div
-              variants={fadeUp}
-              className="mt-14 flex items-center gap-6 border-t border-[#E8E4DF]/8 pt-7 md:gap-8"
-            >
-              {stats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-1.5">
-                  <span className="text-2xl font-semibold tracking-tight text-[#E8E4DF] md:text-3xl">
-                    {stat.value}{stat.suffix}
-                  </span>
-                  <span className="text-[10px] font-medium uppercase tracking-wider text-[#7A7570]">
-                    {stat.shortLabel}
-                  </span>
-                </div>
-              ))}
             </motion.div>
           </motion.div>
 
@@ -130,19 +124,19 @@ export function HeroSection() {
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
                 style={{
                   backgroundImage:
-                    "url(https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80)",
+                    "url(https://images.unsplash.com/photo-1723846806146-05768f1de375?w=1600&q=85&auto=format&fit=crop)",
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C]/60 via-transparent to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0C0C0C]/40 via-transparent to-transparent md:from-[#0C0C0C]/60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/40 via-transparent to-transparent md:from-[#0a0a0a]/60" />
 
-              {/* Certified badge inside image, bottom-left */}
-              <div className="absolute bottom-5 left-5 rounded-xl border border-[#E8E4DF]/10 bg-[#1A1A18]/80 px-5 py-3.5 backdrop-blur-xl">
-                <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#D4844C]">
-                  Certified Partner
+              {/* Trust badge inside image */}
+              <div className="absolute bottom-5 left-5 rounded-xl border border-[#ededed]/10 bg-[#141414]/80 px-5 py-3.5 backdrop-blur-xl">
+                <div className="text-[10px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent)]">
+                  Licensed &amp; Insured
                 </div>
-                <div className="mt-1 text-sm font-medium text-[#E8E4DF]">
-                  Control4 &middot; Lutron &middot; Hunter Douglas
+                <div className="mt-1 text-sm font-medium text-[#ededed]">
+                  Flatbed &middot; Wheel-Lift &middot; Recovery
                 </div>
               </div>
             </div>
@@ -150,7 +144,7 @@ export function HeroSection() {
         </div>
       </Container>
 
-      {/* Bottom copper divider */}
+      {/* Bottom divider */}
       <div className="absolute bottom-0 left-0 right-0 copper-divider" />
     </section>
   );

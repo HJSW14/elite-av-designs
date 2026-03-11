@@ -6,31 +6,31 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { contactPageSchema, breadcrumbSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Free Home Theater & Smart Home Consultation in Denver",
+  title: "Contact Us | 24/7 Towing & Roadside Assistance Sacramento",
   description:
-    "Schedule a free in-home consultation for your home theater, Control4 automation, motorized shades, or surveillance project. Serving Denver, Parker, Highlands Ranch, Castle Rock, Lone Tree, and the entire metro area. Call (303) 881-3413.",
+    "Need a tow? Call Next Level Towing 24/7 at (916) 234-8697. Serving Sacramento, Elk Grove, Rancho Cordova, Folsom, Roseville, and Citrus Heights. Fast dispatch, upfront pricing.",
   alternates: {
-    canonical: "https://eliteavdesigns.com/contact",
+    canonical: "https://nextleveltow.com/contact",
   },
   openGraph: {
-    title: "Contact Elite AV Designs | Free Consultation",
+    title: "Contact Next Level Towing | Sacramento Towing",
     description:
-      "Schedule a free consultation for home theater, smart home automation, and AV installation in Denver, CO. Call (303) 881-3413.",
-    url: "https://eliteavdesigns.com/contact",
+      "24/7 dispatch for towing and roadside assistance in Sacramento, CA. Call (916) 234-8697 or send a message.",
+    url: "https://nextleveltow.com/contact",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Elite AV Designs | Free Consultation",
+    title: "Contact Next Level Towing | Sacramento Towing",
     description:
-      "Schedule a free consultation for home theater, smart home automation, and AV installation in Denver, CO. Call (303) 881-3413.",
+      "24/7 dispatch for towing and roadside assistance in Sacramento, CA. Call (916) 234-8697 or send a message.",
   },
 };
 
 export default function ContactPage() {
   const schema = contactPageSchema();
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "Contact", url: "https://eliteavdesigns.com/contact" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "Contact", url: "https://nextleveltow.com/contact" },
   ]);
 
   return (

@@ -27,15 +27,15 @@ export function ServiceDetailHero({ slug }: { slug: string }) {
   const Icon = service.icon;
 
   return (
-    <section className="noise-overlay relative overflow-hidden bg-[#0C0C0C]">
+    <section className="noise-overlay relative overflow-hidden bg-[#0a0a0a]">
       {/* Background image */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${service.image})` }}
         />
-        <div className="absolute inset-0 bg-[#0C0C0C]/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0C] via-[#0C0C0C]/60 to-transparent" />
+        <div className="absolute inset-0 bg-[#0a0a0a]/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/70 to-transparent" />
       </div>
 
       <Container className="relative z-10 pt-32 pb-16 lg:pt-40 lg:pb-24">
@@ -48,31 +48,31 @@ export function ServiceDetailHero({ slug }: { slug: string }) {
           {/* Breadcrumb */}
           <motion.nav
             variants={fadeUp}
-            className="mb-8 flex items-center gap-1.5 text-[12px] text-[#7A7570]"
+            className="mb-8 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] text-[#888]"
           >
             <Link
               href="/"
-              className="transition-colors hover:text-[#E8E4DF]"
+              className="transition-colors hover:text-[#ededed]"
             >
               Home
             </Link>
             <ChevronRight className="h-3 w-3" />
             <Link
               href="/services"
-              className="transition-colors hover:text-[#E8E4DF]"
+              className="transition-colors hover:text-[#ededed]"
             >
               Services
             </Link>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-[#D4844C]">{service.title}</span>
+            <span className="text-[var(--color-accent)]">{service.title}</span>
           </motion.nav>
 
           {/* Icon + Title */}
-          <motion.div variants={fadeUp} className="mb-4 flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#D4844C]/20 bg-[#D4844C]/10">
-              <Icon className="h-6 w-6 text-[#D4844C]" />
+          <motion.div variants={fadeUp} className="mb-4 flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/10">
+              <Icon className="h-6 w-6 text-[var(--color-accent)]" />
             </div>
-            <h1 className="text-4xl font-semibold tracking-tight text-[#E8E4DF] sm:text-5xl lg:text-6xl">
+            <h1 className="min-w-0 break-words text-3xl font-semibold tracking-tight text-[#ededed] sm:text-4xl lg:text-5xl xl:text-6xl">
               {service.title}
             </h1>
           </motion.div>

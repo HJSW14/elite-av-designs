@@ -3,51 +3,57 @@ export interface Testimonial {
   location: string;
   text: string;
   rating: number;
-  project: string;
+  service: string;
 }
 
 export const testimonials: Testimonial[] = [
-  // Real Google Reviews
   {
-    name: "Patra Clark",
-    location: "Denver Metro, CO",
-    text: "Tyler and Javier, what a great team! Tyler came to our house to give us an estimate for a movie theater and a couple of TVs. His prices were excellent, and we decided to go with his company. We are happy that we made the order with him.",
+    name: "Ryan B.",
+    location: "Sacramento, CA",
+    text: "My M3 needed a tow to a shop after a flat tire. I was worried about scraping my bumper but their truck handled it with no issues. Loaded it perfectly on the flatbed, no drama. Highly recommend.",
     rating: 5,
-    project: "Home Theater",
+    service: "Flatbed Towing",
   },
   {
-    name: "Dawn Caldarella",
-    location: "Denver Metro, CO",
-    text: "Tyler and Elite AV Designs are top notch! Tyler was able to get our AV situation back in order for reasonable cost. He is super knowledgeable, professional and easy to work with. He is also very responsive to questions after the fact. Simply the best!",
+    name: "Garrett W.",
+    location: "Sacramento, CA",
+    text: "Called while pulled over on the freeway and they showed up quickly. Five stars. Professional, fast, and they actually picked up the phone on the first ring.",
     rating: 5,
-    project: "AV Installation",
+    service: "Roadside Assistance",
   },
   {
-    name: "Mckenna Bird",
-    location: "Denver Metro, CO",
-    text: "Tyler and Javier were not only knowledgeable and professional with setting up our tv and other smart devices, but they were easy to work with and quick to help. Would use them again and recommend them to anyone!",
+    name: "Kyce A.",
+    location: "Elk Grove, CA",
+    text: "Needed to take my brand new Mercedes to the dealership after some engine troubles. They showed up quickly and were professional throughout. The car arrived at the dealership without a scratch.",
     rating: 5,
-    project: "Smart Home Setup",
+    service: "Flatbed Towing",
   },
   {
-    name: "Chris Cain",
-    location: "Denver Metro, CO",
-    text: "I have known Javier for some time as he was involved in setting up our AV and home automation system some years ago and was delighted to hear he had set up his own company. Javier and now his team as well have always been responsive, knowledgeable, efficient and extremely competent. I recommend Javier, and now Elite AV Designs, to anyone looking at installing or updating AV, Home Automation and security systems in their home.",
+    name: "Aaron C.",
+    location: "Rancho Cordova, CA",
+    text: "I woke up to my car not starting. I called Next Level Towing and they took care of me quickly. Jump-start worked and I made it to the shop. Very happy with the service.",
     rating: 5,
-    project: "Home Automation",
+    service: "Roadside Assistance",
   },
   {
-    name: "Jason Foster",
-    location: "Denver Metro, CO",
-    text: "Tyler is extremely knowledgeable about home audiovisual systems. He was able to take what would have given me fits and make it look easy. Additionally, he doesn't make you feel silly about switch settings when that might've been the cause for your initial call.",
+    name: "Aaron I.",
+    location: "Sacramento, CA",
+    text: "I know both Kay and Michael and they are awesome. I can definitely recommend. They run a real operation, not some random guy with a truck. Prompt, professional, and honest pricing.",
     rating: 5,
-    project: "Home Theater",
+    service: "Flatbed Towing",
   },
   {
-    name: "Ron Jacobs",
-    location: "Denver Metro, CO",
-    text: "Tyler and his team do wonderful work. Tyler is responsive, friendly and wants to make sure his clients are happy. I highly recommend him.",
+    name: "Brooke N.",
+    location: "Folsom, CA",
+    text: "I woke up to my Toyota not turning on. I thought I needed a shop, but they charged up my battery on the spot. Saved me a tow bill. Thanks, will definitely call again.",
     rating: 5,
-    project: "General AV",
+    service: "Roadside Assistance",
+  },
+  {
+    name: "Brayson C.",
+    location: "Roseville, CA",
+    text: "Had a nail in my tire and they showed up quickly. Changed the spare right there in the parking lot. Clean, fast, and no surprises on price. Exactly what you want when you're stranded.",
+    rating: 5,
+    service: "Roadside Assistance",
   },
 ];

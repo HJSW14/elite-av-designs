@@ -1,9 +1,18 @@
 "use server";
 
 import { Resend } from "resend";
-import { generateContactEmail } from "@/lib/email";
+import { generateContactEmailHtml, generateContactEmailText } from "@/lib/email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// From: contact@nextleveltow.com (or RESEND_FROM_EMAIL for testing)
+const FROM_EMAIL =
+  process.env.RESEND_FROM_EMAIL || "Next Level Towing <contact@nextleveltow.com>";
+
+// To: who receives contact form submissions (comma-separated for multiple)
+const TO_EMAILS = process.env.RESEND_TO_EMAIL
+  ? process.env.RESEND_TO_EMAIL.split(",").map((e) => e.trim()).filter(Boolean)
+  : ["nextleveltow@icloud.com"];
 
 interface ContactFormData {
   name: string;
@@ -26,6 +35,11 @@ export async function submitContactForm(
       message: formData.get("message") as string,
     };
 
+    // Honeypot - if filled, treat as bot
+    if (formData.get("website")) {
+      return { success: true }; // Silent success to not tip off bots
+    }
+
     // Basic validation
     if (!data.name || !data.email || !data.message) {
       return { success: false, error: "Missing required fields" };
@@ -37,18 +51,15 @@ export async function submitContactForm(
       return { success: false, error: "Invalid email address" };
     }
 
-    // Generate email HTML
-    const html = generateContactEmail(data);
+    const html = generateContactEmailHtml(data);
+    const text = generateContactEmailText(data);
 
-    // Send email to Javier and Tyler
     const result = await resend.emails.send({
-      from: "Elite AV Designs <contact@eliteavdesigns.com>",
-      to: [
-        "javier@eliteavdesigns.com",
-        "tyler@eliteavdesigns.com",
-      ],
-      subject: `New Contact Form: ${data.name}${data.service ? ` - ${data.service}` : ""}`,
+      from: FROM_EMAIL,
+      to: TO_EMAILS,
+      subject: `Contact form: ${data.name}${data.service ? ` (${data.service})` : ""}`,
       html,
+      text,
       replyTo: data.email,
     });
 

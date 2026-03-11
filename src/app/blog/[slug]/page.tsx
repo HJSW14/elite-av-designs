@@ -28,15 +28,15 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | Elite AV Designs Blog`,
+    title: `${post.title} | Next Level Towing Blog`,
     description: post.excerpt,
     alternates: {
-      canonical: `https://eliteavdesigns.com/blog/${post.slug}`,
+      canonical: `https://nextleveltow.com/blog/${post.slug}`,
     },
     openGraph: {
-      title: `${post.title} | Elite AV Designs`,
+      title: `${post.title} | Next Level Towing`,
       description: post.excerpt,
-      url: `https://eliteavdesigns.com/blog/${post.slug}`,
+      url: `https://nextleveltow.com/blog/${post.slug}`,
       type: "article",
       publishedTime: post.date,
       authors: [post.author],
@@ -74,11 +74,11 @@ export default async function BlogPostPage({
   });
 
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "Blog", url: "https://eliteavdesigns.com/blog" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "Blog", url: "https://nextleveltow.com/blog" },
     {
       name: post.title,
-      url: `https://eliteavdesigns.com/blog/${post.slug}`,
+      url: `https://nextleveltow.com/blog/${post.slug}`,
     },
   ]);
 

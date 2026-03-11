@@ -19,10 +19,10 @@ const stagger = {
 
 export function ServicesHero() {
   return (
-    <section className="noise-overlay relative overflow-hidden bg-[#0C0C0C] pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <section className="noise-overlay relative overflow-hidden bg-[#0a0a0a] pt-32 pb-20 lg:pt-40 lg:pb-28">
       {/* Subtle radial glow */}
       <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2">
-        <div className="h-[400px] w-[600px] rounded-full bg-[#D4844C]/[0.03] blur-[100px]" />
+        <div className="h-[400px] w-[600px] rounded-full bg-[var(--color-accent)]/[0.03] blur-[100px]" />
       </div>
 
       <Container className="relative z-10">
@@ -34,26 +34,26 @@ export function ServicesHero() {
         >
           <motion.span
             variants={fadeUp}
-            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]"
+            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]"
           >
             What We Do
           </motion.span>
 
           <motion.h1
             variants={fadeUp}
-            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#E8E4DF] sm:text-5xl lg:text-6xl"
+            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#ededed] sm:text-5xl lg:text-6xl"
           >
-            Technology that fits{" "}
-            <span className="heading-display text-[#D4844C]">your</span> life
+            Towing that fits{" "}
+            <span className="heading-display text-[var(--color-accent)]">any</span> vehicle
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#7A7570]"
+            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.7] text-[#888]"
           >
-            From immersive home theaters to whole-home automation, motorized
-            shading, and advanced surveillance. Every system is custom-designed,
-            professionally installed, and backed by ongoing support.
+            Flatbed towing, roadside assistance, vehicle recovery, and long-distance
+            transport. We bring the right truck for your situation, 24/7 across
+            Sacramento and surrounding areas.
           </motion.p>
         </motion.div>
       </Container>

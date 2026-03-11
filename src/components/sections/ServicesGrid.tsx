@@ -12,7 +12,7 @@ export function ServicesGrid() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="bg-[#F5F2EE] py-24 lg:py-32">
+    <section ref={ref} className="bg-[#0f0f0f] py-24 lg:py-32">
       <Container>
         {/* Section header */}
         <div className="mb-14 max-w-2xl md:mb-20">
@@ -20,7 +20,7 @@ export function ServicesGrid() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]"
+            className="text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]"
           >
             What We Do
           </motion.span>
@@ -28,15 +28,23 @@ export function ServicesGrid() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-            className="mt-3 text-3xl font-semibold tracking-tight text-[#1A1A18] sm:text-4xl lg:text-5xl"
+            className="mt-3 text-3xl font-semibold tracking-tight text-[#ededed] sm:text-4xl lg:text-5xl"
           >
-            Complete AV solutions,{" "}
-            <span className="heading-display text-[#D4844C]">one</span>{" "}
-            trusted partner
+            Every situation,{" "}
+            <span className="heading-display text-[var(--color-accent)]">covered</span>
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+            className="mt-4 text-[15px] leading-[1.7] text-[#888]"
+          >
+            From a flat tire on the freeway to transporting a luxury vehicle across
+            the state, we have the right truck and the right training for the job.
+          </motion.p>
         </div>
 
-        {/* Uniform 2x2 grid */}
+        {/* 2x2 grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:gap-5">
           {services.map((service, i) => (
             <motion.div
@@ -51,7 +59,7 @@ export function ServicesGrid() {
             >
               <Link
                 href={`/services/${service.slug}`}
-                className="group relative flex h-[340px] flex-col overflow-hidden rounded-2xl bg-[#1A1A18] transition-all duration-500 hover:ring-1 hover:ring-[#D4844C]/20 sm:h-[380px]"
+                className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl bg-[#141414] transition-all duration-500 hover:ring-1 hover:ring-[var(--color-accent)]/20 sm:min-h-[340px] lg:min-h-[380px]"
               >
                 {/* Image top half */}
                 <div className="relative h-[55%] w-full overflow-hidden">
@@ -59,7 +67,7 @@ export function ServicesGrid() {
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                     style={{ backgroundImage: `url(${service.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A18] via-[#1A1A18]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/20 to-transparent" />
                 </div>
 
                 {/* Content bottom half */}
@@ -70,20 +78,20 @@ export function ServicesGrid() {
                   </span>
 
                   {/* Icon */}
-                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-[#D4844C]/10">
-                    <service.icon className="h-4 w-4 text-[#D4844C]" />
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--color-accent)]/10">
+                    <service.icon className="h-4 w-4 text-[var(--color-accent)]" />
                   </div>
 
-                  <h3 className="text-lg font-semibold text-[#E8E4DF]">
+                  <h3 className="text-lg font-semibold text-[#ededed]">
                     {service.title}
                   </h3>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-[#7A7570] line-clamp-2">
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-[#888] line-clamp-2">
                     {service.shortDescription}
                   </p>
 
                   {/* Arrow */}
-                  <div className="mt-3 flex items-center gap-1.5 text-xs font-medium text-[#D4844C] opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
-                    Explore
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-medium text-[var(--color-accent)] opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
+                    Learn More
                     <ArrowUpRight className="h-3.5 w-3.5" />
                   </div>
                 </div>

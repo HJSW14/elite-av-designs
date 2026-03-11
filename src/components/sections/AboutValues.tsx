@@ -10,25 +10,25 @@ const values = [
     icon: Shield,
     title: "Quality First",
     description:
-      "We use only premium, industry-certified equipment and follow manufacturer best practices on every single install.",
+      "We use properly maintained flatbed and wheel-lift equipment. Every tow is done with care and the right setup for your vehicle.",
   },
   {
     icon: Zap,
-    title: "Precision Execution",
+    title: "Reliable Response",
     description:
-      "Clean wiring, calibrated audio, seamless integration. Every detail is dialed in before we hand you the remote.",
+      "We answer the phone and get you an honest ETA. No runaround, no vague promises. We show up when we say we will.",
   },
   {
     icon: Handshake,
     title: "Honest Partnership",
     description:
-      "No upselling, no jargon. We recommend what actually fits your space, your lifestyle, and your budget.",
+      "No upselling, no pressure. We quote the price before we hook up and stick to it. What we say is what you pay.",
   },
   {
     icon: Eye,
-    title: "Ongoing Support",
+    title: "There When You Need Us",
     description:
-      "Our relationship doesn't end at install. Remote diagnostics, system updates, and responsive service whenever you need us.",
+      "24/7 dispatch, every day of the year. Break down at 2 a.m. or on a holiday - we pick up and get you help.",
   },
 ];
 
@@ -37,7 +37,7 @@ export function AboutValues() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="border-y border-[#E8E4DF]/6 bg-[#111110] py-20 lg:py-28">
+    <section ref={ref} className="border-y border-[#ededed]/6 bg-[#141414] py-20 lg:py-28">
       <Container>
         <motion.div
           className="mb-14 text-center"
@@ -45,12 +45,12 @@ export function AboutValues() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
         >
-          <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+          <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
             What We Stand For
           </span>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
             The principles behind every{" "}
-            <span className="heading-display text-[#D4844C]">project</span>
+            <span className="heading-display text-[var(--color-accent)]">job</span>
           </h2>
         </motion.div>
 
@@ -60,7 +60,7 @@ export function AboutValues() {
             return (
               <motion.div
                 key={value.title}
-                className="rounded-xl border border-[#E8E4DF]/6 bg-[#0C0C0C] p-6"
+                className="rounded-xl border border-[#ededed]/6 bg-[#0a0a0a] p-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -69,13 +69,13 @@ export function AboutValues() {
                   ease: [0.22, 1, 0.36, 1] as const,
                 }}
               >
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-[#D4844C]/20 bg-[#D4844C]/8">
-                  <Icon className="h-5 w-5 text-[#D4844C]" />
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/8">
+                  <Icon className="h-5 w-5 text-[var(--color-accent)]" />
                 </div>
-                <h3 className="text-base font-semibold text-[#E8E4DF]">
+                <h3 className="text-base font-semibold text-[#ededed]">
                   {value.title}
                 </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-[#7A7570]">
+                <p className="mt-2 text-[13px] leading-relaxed text-[#888]">
                   {value.description}
                 </p>
               </motion.div>

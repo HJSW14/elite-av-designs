@@ -41,19 +41,18 @@ export const imageSizes = {
  * Alt text templates for better image SEO
  */
 export function generateAltText(context: {
-  type: "hero" | "service" | "project" | "brand" | "blog";
+  type: "hero" | "service" | "area" | "blog";
   subject: string;
   location?: string;
 }): string {
   const { type, subject, location } = context;
-  const loc = location || "Denver metro area";
+  const loc = location || "Sacramento area";
 
   const templates = {
-    hero: `${subject} home theater and smart home installation in ${loc}`,
-    service: `Professional ${subject} installation by Elite AV Designs`,
-    project: `${subject} - Custom home theater and AV installation in ${loc}`,
-    brand: `${subject} authorized dealer and installer in ${loc}`,
-    blog: `${subject} - Elite AV Designs guide`,
+    hero: `${subject} towing and roadside assistance in ${loc}`,
+    service: `Professional ${subject} by Next Level Towing`,
+    area: `${subject} - Towing and roadside assistance in ${loc}`,
+    blog: `${subject} - Next Level Towing guide`,
   };
 
   return templates[type];

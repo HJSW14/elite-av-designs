@@ -14,7 +14,7 @@ export function ServiceFaq({ slug }: { slug: string }) {
   if (!service || service.faqs.length === 0) return null;
 
   return (
-    <section ref={ref} className="bg-[#0C0C0C] py-16 lg:py-24">
+    <section ref={ref} className="bg-[#0a0a0a] py-16 lg:py-24">
       <Container>
         <motion.div
           className="mx-auto max-w-3xl"
@@ -23,12 +23,12 @@ export function ServiceFaq({ slug }: { slug: string }) {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
         >
           <div className="mb-10 text-center">
-            <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+            <span className="mb-3 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
               Common Questions
             </span>
-            <h2 className="text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
               Frequently asked{" "}
-              <span className="heading-display text-[#D4844C]">questions</span>
+              <span className="heading-display text-[var(--color-accent)]">questions</span>
             </h2>
           </div>
 
@@ -47,17 +47,17 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-xl border border-[#E8E4DF]/6 bg-[#111110]">
+    <div className="rounded-xl border border-[#ededed]/6 bg-[#141414]">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
         aria-expanded={open}
       >
-        <span className="text-[15px] font-medium leading-snug text-[#E8E4DF]">
+        <span className="text-[15px] font-medium leading-snug text-[#ededed]">
           {question}
         </span>
         <ChevronDown
-          className={`h-4.5 w-4.5 shrink-0 text-[#D4844C] transition-transform duration-300 ${
+          className={`h-4.5 w-4.5 shrink-0 text-[var(--color-accent)] transition-transform duration-300 ${
             open ? "rotate-180" : ""
           }`}
         />
@@ -71,7 +71,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="px-6 pb-5 text-[14px] leading-[1.7] text-[#7A7570]">
+            <p className="px-6 pb-5 text-[14px] leading-[1.7] text-[#888]">
               {answer}
             </p>
           </motion.div>

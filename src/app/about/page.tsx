@@ -1,39 +1,33 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { StickyCallButton } from "@/components/layout/StickyCallButton";
 import { AboutHero } from "@/components/sections/AboutHero";
 import { AboutStory } from "@/components/sections/AboutStory";
-import { AboutValues } from "@/components/sections/AboutValues";
-import { BrandsStrip } from "@/components/sections/BrandsStrip";
 import { CTASection } from "@/components/sections/CTASection";
 import { aboutPageSchema, breadcrumbSchema } from "@/lib/schemas";
+import { company } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "About Elite AV Designs | Denver Home Theater & Automation Experts",
+  title: `About ${company.name} | Sacramento Towing & Roadside Assistance`,
   description:
-    "Founded in 2018, Elite AV Designs is a certified Control4 dealer and Lutron installer serving Denver, Parker, Highlands Ranch, Castle Rock, and the entire Colorado Front Range. 150+ projects completed.",
+    "Next Level Towing is a Sacramento-based 24/7 towing and roadside assistance company founded by Michael and Kay. Licensed, insured, and committed to upfront pricing.",
   alternates: {
-    canonical: "https://eliteavdesigns.com/about",
+    canonical: "https://nextleveltow.com/about",
   },
   openGraph: {
-    title: "About Elite AV Designs | Denver's Premier AV Integrator",
+    title: `About ${company.name} | Sacramento's 24/7 Towing Service`,
     description:
-      "Certified Control4 dealer serving the Denver metro area since 2018. 150+ custom home theater and smart home projects completed.",
-    url: "https://eliteavdesigns.com/about",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Elite AV Designs | Denver's Premier AV Integrator",
-    description:
-      "Certified Control4 dealer serving the Denver metro area since 2018. 150+ custom home theater and smart home projects completed.",
+      "Sacramento-based 24/7 towing and roadside assistance. Meet Michael, Kay, and the team behind Next Level Towing.",
+    url: "https://nextleveltow.com/about",
   },
 };
 
 export default function AboutPage() {
   const schema = aboutPageSchema();
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "About", url: "https://eliteavdesigns.com/about" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "About", url: "https://nextleveltow.com/about" },
   ]);
 
   return (
@@ -50,11 +44,10 @@ export default function AboutPage() {
       <main>
         <AboutHero />
         <AboutStory />
-        <AboutValues />
-        <BrandsStrip />
         <CTASection />
       </main>
       <Footer />
+      <StickyCallButton />
     </>
   );
 }

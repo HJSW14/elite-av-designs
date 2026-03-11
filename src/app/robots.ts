@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://eliteavdesigns.com/sitemap.xml",
+    sitemap: "https://nextleveltow.com/sitemap.xml",
   };
 }

@@ -7,31 +7,31 @@ import { CTASection } from "@/components/sections/CTASection";
 import { blogCollectionSchema, breadcrumbSchema } from "@/lib/schemas";
 
 export const metadata: Metadata = {
-  title: "Blog | Home Theater & Smart Home Tips from Denver AV Experts",
+  title: "Blog | Towing & Roadside Tips from Sacramento Experts",
   description:
-    "Practical guides on home theater design, Control4 automation, Dolby Atmos audio, motorized shades, and home security from Elite AV Designs in Denver, Colorado.",
+    "Practical guides on towing safety, flatbed transport, roadside assistance, and vehicle care from Next Level Towing in Sacramento, CA.",
   alternates: {
-    canonical: "https://eliteavdesigns.com/blog",
+    canonical: "https://nextleveltow.com/blog",
   },
   openGraph: {
-    title: "Blog | Elite AV Designs Denver",
+    title: "Blog | Next Level Towing Sacramento",
     description:
-      "Home theater tips, smart home guides, and AV installation insights from Denver's premier integrator.",
-    url: "https://eliteavdesigns.com/blog",
+      "Towing tips, roadside safety guides, and vehicle care insights from Sacramento's trusted 24/7 tow service.",
+    url: "https://nextleveltow.com/blog",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog | Elite AV Designs Denver",
+    title: "Blog | Next Level Towing Sacramento",
     description:
-      "Home theater tips, smart home guides, and AV installation insights from Denver's premier integrator.",
+      "Towing tips, roadside safety guides, and vehicle care insights from Sacramento's trusted 24/7 tow service.",
   },
 };
 
 export default function BlogPage() {
   const schema = blogCollectionSchema();
   const breadcrumbs = breadcrumbSchema([
-    { name: "Home", url: "https://eliteavdesigns.com" },
-    { name: "Blog", url: "https://eliteavdesigns.com/blog" },
+    { name: "Home", url: "https://nextleveltow.com" },
+    { name: "Blog", url: "https://nextleveltow.com/blog" },
   ]);
 
   return (

@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Page Not Found",
   description:
-    "The page you are looking for does not exist. Browse our home theater, smart home, and AV installation services in Denver, CO.",
+    "The page you are looking for does not exist. Browse our towing and roadside assistance services in Sacramento, CA.",
   robots: {
     index: false,
     follow: true,
@@ -20,15 +20,15 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="noise-overlay relative min-h-[70vh] bg-[#0C0C0C]">
+      <main className="noise-overlay relative min-h-[70vh] bg-[#0a0a0a]">
         <Container className="flex min-h-[70vh] flex-col items-center justify-center text-center">
-          <span className="mb-4 text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+          <span className="mb-4 text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
             404 Error
           </span>
-          <h1 className="text-4xl font-semibold tracking-tight text-[#E8E4DF] sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-[#ededed] sm:text-5xl">
             Page not found
           </h1>
-          <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.7] text-[#7A7570]">
+          <p className="mx-auto mt-4 max-w-md text-[15px] leading-[1.7] text-[#888]">
             The page you are looking for does not exist or has been moved. Let
             us help you find what you need.
           </p>
@@ -41,28 +41,28 @@ export default function NotFound() {
               Contact Us
             </Button>
           </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-6 text-[13px] text-[#7A7570]">
+          <div className="mt-12 flex flex-wrap justify-center gap-6 text-[13px] text-[#888]">
             <Link
               href="/services"
-              className="transition-colors hover:text-[#E8E4DF]"
+              className="transition-colors hover:text-[#ededed]"
             >
               Services
             </Link>
             <Link
-              href="/projects"
-              className="transition-colors hover:text-[#E8E4DF]"
+              href="/areas"
+              className="transition-colors hover:text-[#ededed]"
             >
-              Projects
+              Service Areas
             </Link>
             <Link
               href="/blog"
-              className="transition-colors hover:text-[#E8E4DF]"
+              className="transition-colors hover:text-[#ededed]"
             >
               Blog
             </Link>
             <Link
               href="/about"
-              className="transition-colors hover:text-[#E8E4DF]"
+              className="transition-colors hover:text-[#ededed]"
             >
               About
             </Link>

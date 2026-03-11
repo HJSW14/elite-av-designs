@@ -39,7 +39,7 @@ export function AreaContent({ slug }: { slug: string }) {
   return (
     <>
       {/* Description section */}
-      <section className="bg-[#0C0C0C] py-20 lg:py-28">
+      <section className="bg-[#0a0a0a] py-20 lg:py-28">
         <Container>
           <motion.div
             ref={descRef}
@@ -50,28 +50,28 @@ export function AreaContent({ slug }: { slug: string }) {
           >
             <motion.h2
               variants={fadeUp}
-              className="text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl"
+              className="text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl"
             >
-              About Our Work in {area.city}
+              Towing & Roadside in {area.city}
             </motion.h2>
 
             <motion.p
               variants={fadeUp}
-              className="mt-6 text-[15px] leading-[1.85] text-[#7A7570]"
+              className="mt-6 text-[15px] leading-[1.85] text-[#888]"
             >
               {area.description}
             </motion.p>
 
             {/* Neighborhoods */}
             <motion.div variants={fadeUp} className="mt-10">
-              <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[#D4844C]">
+              <h3 className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-accent)]">
                 Neighborhoods We Serve
               </h3>
               <div className="flex flex-wrap gap-2">
                 {area.neighborhoods.map((n) => (
                   <span
                     key={n}
-                    className="rounded-full border border-[#E8E4DF]/8 bg-[#E8E4DF]/[0.03] px-3.5 py-1.5 text-[12px] text-[#7A7570]"
+                    className="rounded-full border border-[#ededed]/8 bg-[#ededed]/[0.03] px-3.5 py-1.5 text-[12px] text-[#888]"
                   >
                     {n}
                   </span>
@@ -83,7 +83,7 @@ export function AreaContent({ slug }: { slug: string }) {
       </section>
 
       {/* Services in this area */}
-      <section className="border-t border-[#E8E4DF]/6 bg-[#0C0C0C] py-20 lg:py-28">
+      <section className="border-t border-[#ededed]/6 bg-[#0a0a0a] py-20 lg:py-28">
         <Container>
           <motion.div
             ref={servRef}
@@ -92,10 +92,10 @@ export function AreaContent({ slug }: { slug: string }) {
             variants={stagger}
           >
             <motion.div variants={fadeUp} className="mx-auto max-w-3xl text-center">
-              <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+              <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
                 Our Services
               </span>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl lg:text-4xl">
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl lg:text-4xl">
                 What We Offer in {area.city}
               </h2>
             </motion.div>
@@ -105,18 +105,18 @@ export function AreaContent({ slug }: { slug: string }) {
                 <motion.div key={service.slug} variants={fadeUp}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="group block rounded-2xl border border-[#E8E4DF]/6 bg-[#E8E4DF]/[0.02] p-6 transition-all hover:border-[#D4844C]/20 hover:bg-[#D4844C]/[0.03]"
+                    className="group block rounded-2xl border border-[#ededed]/6 bg-[#ededed]/[0.02] p-6 transition-all hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-accent)]/[0.03]"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#D4844C]/10">
-                      <service.icon className="h-5 w-5 text-[#D4844C]" />
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-accent)]/10">
+                      <service.icon className="h-5 w-5 text-[var(--color-accent)]" />
                     </div>
-                    <h3 className="text-lg font-semibold text-[#E8E4DF]">
+                    <h3 className="text-lg font-semibold text-[#ededed]">
                       {service.title}
                     </h3>
-                    <p className="mt-2 text-[13px] leading-relaxed text-[#7A7570]">
+                    <p className="mt-2 text-[13px] leading-relaxed text-[#888]">
                       {service.shortDescription}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[#D4844C] opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-[var(--color-accent)] opacity-0 transition-opacity group-hover:opacity-100">
                       Learn more
                       <ArrowRight className="h-3.5 w-3.5" />
                     </span>
@@ -129,7 +129,7 @@ export function AreaContent({ slug }: { slug: string }) {
       </section>
 
       {/* Why choose us in this area */}
-      <section className="border-t border-[#E8E4DF]/6 bg-[#0C0C0C] py-20 lg:py-28">
+      <section className="border-t border-[#ededed]/6 bg-[#0a0a0a] py-20 lg:py-28">
         <Container>
           <motion.div
             ref={whyRef}
@@ -139,10 +139,10 @@ export function AreaContent({ slug }: { slug: string }) {
             variants={stagger}
           >
             <motion.div variants={fadeUp}>
-              <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]">
+              <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]">
                 Why {company.name}
               </span>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#E8E4DF] sm:text-3xl">
+              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#ededed] sm:text-3xl">
                 Why Choose Us in {area.city}
               </h2>
             </motion.div>
@@ -154,10 +154,10 @@ export function AreaContent({ slug }: { slug: string }) {
                   variants={fadeUp}
                   className="flex items-start gap-3"
                 >
-                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D4844C]/10">
-                    <Check className="h-3 w-3 text-[#D4844C]" />
+                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)]/10">
+                    <Check className="h-3 w-3 text-[var(--color-accent)]" />
                   </div>
-                  <span className="text-[15px] leading-relaxed text-[#7A7570]">
+                  <span className="text-[15px] leading-relaxed text-[#888]">
                     {highlight}
                   </span>
                 </motion.li>

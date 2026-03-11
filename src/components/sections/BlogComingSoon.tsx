@@ -20,19 +20,19 @@ const stagger = {
 };
 
 const topics = [
-  "Home Theater Design Tips",
-  "Smart Home Automation 101",
-  "Choosing the Right Motorized Shades",
-  "Security Camera Placement Guide",
-  "Control4 vs. DIY Systems",
-  "How to Plan a Media Room",
+  "Flatbed vs. Wheel-Lift Towing",
+  "AWD & Luxury Vehicle Towing",
+  "What to Do When Stranded",
+  "Roadside Assistance Checklist",
+  "Towing Insurance Tips",
+  "Sacramento Area Coverage",
 ];
 
 export function BlogComingSoon() {
   return (
-    <section className="noise-overlay relative flex min-h-[80dvh] items-center overflow-hidden bg-[#0C0C0C]">
+    <section className="noise-overlay relative flex min-h-[80dvh] items-center overflow-hidden bg-[#0a0a0a]">
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="h-[500px] w-[700px] rounded-full bg-[#D4844C]/[0.03] blur-[120px]" />
+        <div className="h-[500px] w-[700px] rounded-full bg-[var(--color-accent)]/[0.03] blur-[120px]" />
       </div>
 
       <Container className="relative z-10 py-32">
@@ -44,44 +44,44 @@ export function BlogComingSoon() {
         >
           <motion.div
             variants={fadeUp}
-            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#D4844C]/20 bg-[#D4844C]/8"
+            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/8"
           >
-            <Newspaper className="h-7 w-7 text-[#D4844C]" />
+            <Newspaper className="h-7 w-7 text-[var(--color-accent)]" />
           </motion.div>
 
           <motion.span
             variants={fadeUp}
-            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4844C]"
+            className="mb-4 inline-block text-[11px] font-medium uppercase tracking-[0.25em] text-[var(--color-accent)]"
           >
             Blog
           </motion.span>
 
           <motion.h1
             variants={fadeUp}
-            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#E8E4DF] sm:text-5xl"
+            className="text-4xl font-semibold leading-[1.1] tracking-tight text-[#ededed] sm:text-5xl"
           >
             Coming{" "}
-            <span className="heading-display text-[#D4844C]">soon</span>
+            <span className="heading-display text-[var(--color-accent)]">soon</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mx-auto mt-5 max-w-md text-[15px] leading-[1.7] text-[#7A7570]"
+            className="mx-auto mt-5 max-w-md text-[15px] leading-[1.7] text-[#888]"
           >
-            We&apos;re putting together expert guides, project breakdowns, and
-            tips on getting the most from your home technology. Stay tuned.
+            Expert guides on towing, roadside assistance, and what to expect when
+            you need help. Stay tuned.
           </motion.p>
 
           {/* Preview topics */}
           <motion.div variants={fadeUp} className="mt-10">
-            <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[#7A7570]">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-[#888]">
               Topics we&apos;ll cover
             </p>
             <div className="flex flex-wrap justify-center gap-2">
               {topics.map((topic) => (
                 <span
                   key={topic}
-                  className="rounded-full border border-[#E8E4DF]/8 px-4 py-1.5 text-[12px] font-medium text-[#7A7570]"
+                  className="rounded-full border border-[#ededed]/8 px-4 py-1.5 text-[12px] font-medium text-[#888]"
                 >
                   {topic}
                 </span>

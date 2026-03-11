@@ -27,18 +27,18 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-[#D4844C] text-white hover:bg-[#C07040] shadow-lg shadow-[#D4844C]/15",
+    "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] shadow-lg shadow-[var(--color-accent)]/15",
   secondary:
-    "bg-[#E8E4DF]/8 text-[#E8E4DF] hover:bg-[#E8E4DF]/12 border border-[#E8E4DF]/10",
-  ghost: "text-[#7A7570] hover:text-[#E8E4DF] hover:bg-[#E8E4DF]/5",
+    "bg-[#ededed]/8 text-[#ededed] hover:bg-[#ededed]/12 border border-[#ededed]/10",
+  ghost: "text-[#888] hover:text-[#ededed] hover:bg-[#ededed]/5",
   outline:
-    "border border-[#D4844C]/40 text-[#D4844C] hover:bg-[#D4844C] hover:text-white hover:border-[#D4844C]",
+    "border border-[var(--color-accent)]/40 text-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-white hover:border-[var(--color-accent)]",
 };
 
 const sizeStyles: Record<Size, string> = {
-  sm: "px-4 py-2 text-[13px]",
-  md: "px-5 py-2.5 text-[13px]",
-  lg: "px-7 py-3.5 text-sm",
+  sm: "min-h-[44px] px-4 py-2.5 text-[13px]",
+  md: "min-h-[44px] px-5 py-2.5 text-[13px] sm:text-[14px]",
+  lg: "min-h-[48px] px-7 py-3.5 text-sm",
 };
 
 export function Button({
@@ -49,7 +49,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap",
+    "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-normal sm:whitespace-nowrap",
     variantStyles[variant],
     sizeStyles[size],
     className
