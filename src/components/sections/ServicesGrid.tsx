@@ -62,8 +62,8 @@ export function ServicesGrid() {
                 href={`/services/${service.slug}`}
                 className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl bg-[#141414] transition-all duration-500 hover:ring-1 hover:ring-[var(--color-accent)]/20 sm:min-h-[340px] lg:min-h-[380px]"
               >
-                {/* Image top half */}
-                <div className="relative h-[55%] w-full overflow-hidden">
+                {/* Full-card image background */}
+                <div className="absolute inset-0">
                   <Image
                     src={service.image}
                     alt={service.title}
@@ -71,11 +71,11 @@ export function ServicesGrid() {
                     sizes="(max-width: 640px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/45 to-[#141414]/15" />
                 </div>
 
-                {/* Content bottom half */}
-                <div className="relative flex flex-1 flex-col justify-end p-6">
+                {/* Content overlay */}
+                <div className="relative z-10 flex min-h-[300px] flex-1 flex-col justify-end p-6 sm:min-h-[340px] lg:min-h-[380px]">
                   {/* Number */}
                   <span className="absolute top-3 right-5 text-[3.5rem] font-bold leading-none text-white/[0.04]">
                     {String(i + 1).padStart(2, "0")}
