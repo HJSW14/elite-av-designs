@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -63,9 +64,12 @@ export function ServicesGrid() {
               >
                 {/* Image top half */}
                 <div className="relative h-[55%] w-full overflow-hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: `url(${service.image})` }}
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/20 to-transparent" />
                 </div>
